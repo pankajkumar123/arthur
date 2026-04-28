@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Secure Checkout - Sai Scientifics</title>
+  <meta name="description" content="Complete your secure payment with multiple payment options. 100% safe and encrypted transactions.">
+  <meta name="keywords" content="checkout, payment, secure payment, upi, credit card, net banking">
+  <meta name="author" content="Sai Scientifics">
+  <meta property="og:title" content="Secure Checkout - Sai Scientifics">
+  <meta property="og:description" content="Complete your purchase with our secure payment gateway.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1556656793-08538906a9f8?w=1200&h=630&fit=crop">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Secure Checkout - Sai Scientifics">
+  <meta name="twitter:description" content="Complete your secure payment with multiple options.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="Payment.css">
+  <style>
+    .loading-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.95); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999; backdrop-filter: blur(4px); transition: opacity 0.3s ease; } .loading-overlay.active { opacity: 1; pointer-events: auto; } .loading-overlay:not(.active) { opacity: 0; pointer-events: none; } .loading-spinner { width: 50px; height: 50px; border: 4px solid #f0f0f0; border-top: 4px solid var(--brand-orange, #ff6b00); border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 16px; } @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } } .toast { position: fixed; bottom: 20px; right: 20px; background: white; padding: 16px 24px; border-radius: 8px; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15); display: flex; align-items: center; gap: 12px; z-index: 10000; animation: slideInRight 0.3s ease; } .toast.success { background: linear-gradient(135deg, #10b981 0%, #06a86d 100%); color: white; border-left: 4px solid #059669; } .toast.error { background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); color: white; border-left: 4px solid #b91c1c; } @keyframes slideInRight { from { transform: translateX(400px); opacity: 0; } to { transform: translateX(0); opacity: 1; } } html { scroll-behavior: smooth; }
+  </style>
+</head>
+<body>
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-spinner"></div>
+    <p>Processing payment...</p>
+  </div>
+  <!-- Top Banner -->
+  <div class="top-banner">
+    <div class="left-section">
+      <a href="tel:+91918275568">Call: +91 918275568</a>
+      <a href="mailto:sales@saiscientifics.com">sales@saiscientifics.com</a>
+      <span class="banner-chip">100% Secure Payments</span>
+    </div>
+    <div class="top-right-section">
+      <a href="HelpCentre.html">Need Help?</a>
+    </div>
+  </div>
+
+  <!-- Main Header -->
+  <header class="main-header">
+    <div class="brand-block">
+      <a href="TopRowbanner.html" class="brand-name">sai<span class="brand-orange-text">scientifics</span></a>
+      <p>Secure Checkout</p>
+    </div>
+
+    <div class="header-actions">
+      <div id="authSection">
+        <a href="Login.html" class="action-link">Sign in</a>
+      </div>
+      <div id="userSection" style="display: none;">
+        <span class="action-link" id="userName"></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Checkout Progress -->
+  <div class="checkout-progress">
+    <div class="progress-container">
+      <div class="progress-step completed">
+        <div class="step-circle">
+          <i class="fas fa-check"></i>
+        </div>
+        <span>Cart</span>
+      </div>
+      <div class="progress-line completed"></div>
+      <div class="progress-step completed">
+        <div class="step-circle">
+          <i class="fas fa-check"></i>
+        </div>
+        <span>Address</span>
+      </div>
+      <div class="progress-line active"></div>
+      <div class="progress-step active">
+        <div class="step-circle">3</div>
+        <span>Payment</span>
+      </div>
+      <div class="progress-line"></div>
+      <div class="progress-step">
+        <div class="step-circle">4</div>
+        <span>Confirmation</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="payment-layout">
+    <!-- Payment Methods -->
+    <section class="payment-section">
+      <div class="section-card">
+        <h2><i class="fas fa-lock"></i> Select Payment Method</h2>
+        
+        <div class="payment-methods">
+          <!-- UPI Payment -->
+          <div class="payment-method" data-method="upi">
+            <input type="radio" name="paymentMethod" id="upi" value="upi">
+            <label for="upi">
+              <div class="method-header">
+                <i class="fas fa-mobile-alt"></i>
+                <div>
+                  <strong>UPI</strong>
+                  <span>Pay directly from your bank account</span>
+                </div>
+              </div>
+              <i class="fas fa-chevron-right"></i>
+            </label>
+            <div class="method-details">
+              <div class="upi-options">
+                <button class="upi-app-btn" data-app="gpay">
+                  <img src="https://via.placeholder.com/40" alt="Google Pay">
+                  <span>Google Pay</span>
+                </button>
+                <button class="upi-app-btn" data-app="phonepe">
+                  <img src="https://via.placeholder.com/40" alt="PhonePe">
+                  <span>PhonePe</span>
+                </button>
+                <button class="upi-app-btn" data-app="paytm">
+                  <img src="https://via.placeholder.com/40" alt="Paytm">
+                  <span>Paytm</span>
+                </button>
+              </div>
+              <div class="upi-id-input">
+                <label>Or enter UPI ID</label>
+                <input type="text" id="upiId" placeholder="yourname@upi">
+                <button class="verify-btn">Verify</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card Payment -->
+          <div class="payment-method" data-method="card">
+            <input type="radio" name="paymentMethod" id="card" value="card">
+            <label for="card">
+              <div class="method-header">
+                <i class="fas fa-credit-card"></i>
+                <div>
+                  <strong>Credit / Debit Card</strong>
+                  <span>Visa, Mastercard, RuPay, Amex</span>
+                </div>
+              </div>
+              <i class="fas fa-chevron-right"></i>
+            </label>
+            <div class="method-details">
+              <form id="cardForm">
+                <div class="form-group">
+                  <label>Card Number</label>
+                  <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19">
+                  <div class="card-icons">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-amex"></i>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>Expiry Date</label>
+                    <input type="text" id="cardExpiry" placeholder="MM/YY" maxlength="5">
+                  </div>
+                  <div class="form-group">
+                    <label>CVV</label>
+                    <input type="password" id="cardCvv" placeholder="123" maxlength="3">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Cardholder Name</label>
+                  <input type="text" id="cardName" placeholder="Name on card">
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- Net Banking -->
+          <div class="payment-method" data-method="netbanking">
+            <input type="radio" name="paymentMethod" id="netbanking" value="netbanking">
+            <label for="netbanking">
+              <div class="method-header">
+                <i class="fas fa-university"></i>
+                <div>
+                  <strong>Net Banking</strong>
+                  <span>All major banks supported</span>
+                </div>
+              </div>
+              <i class="fas fa-chevron-right"></i>
+            </label>
+            <div class="method-details">
+              <div class="bank-grid">
+                <button class="bank-btn" data-bank="sbi">
+                  <img src="https://via.placeholder.com/60" alt="SBI">
+                  <span>SBI</span>
+                </button>
+                <button class="bank-btn" data-bank="hdfc">
+                  <img src="https://via.placeholder.com/60" alt="HDFC">
+                  <span>HDFC</span>
+                </button>
+                <button class="bank-btn" data-bank="icici">
+                  <img src="https://via.placeholder.com/60" alt="ICICI">
+                  <span>ICICI</span>
+                </button>
+                <button class="bank-btn" data-bank="axis">
+                  <img src="https://via.placeholder.com/60" alt="Axis">
+                  <span>Axis</span>
+                </button>
+                <button class="bank-btn" data-bank="kotak">
+                  <img src="https://via.placeholder.com/60" alt="Kotak">
+                  <span>Kotak</span>
+                </button>
+                <button class="bank-btn" data-bank="other">
+                  <i class="fas fa-ellipsis-h"></i>
+                  <span>Other Banks</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Wallets -->
+          <div class="payment-method" data-method="wallet">
+            <input type="radio" name="paymentMethod" id="wallet" value="wallet">
+            <label for="wallet">
+              <div class="method-header">
+                <i class="fas fa-wallet"></i>
+                <div>
+                  <strong>Wallets</strong>
+                  <span>Paytm, PhonePe, Amazon Pay</span>
+                </div>
+              </div>
+              <i class="fas fa-chevron-right"></i>
+            </label>
+            <div class="method-details">
+              <div class="wallet-options">
+                <button class="wallet-btn" data-wallet="paytm">
+                  <img src="https://via.placeholder.com/50" alt="Paytm">
+                  <span>Paytm Wallet</span>
+                </button>
+                <button class="wallet-btn" data-wallet="phonepe">
+                  <img src="https://via.placeholder.com/50" alt="PhonePe">
+                  <span>PhonePe Wallet</span>
+                </button>
+                <button class="wallet-btn" data-wallet="amazon">
+                  <img src="https://via.placeholder.com/50" alt="Amazon Pay">
+                  <span>Amazon Pay</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Buy on Credit (30 Days) -->
+          <div class="payment-method" data-method="credit">
+            <input type="radio" name="paymentMethod" id="credit30" value="credit30">
+            <label for="credit30">
+              <div class="method-header">
+                <i class="fas fa-calendar-alt"></i>
+                <div>
+                  <strong>Pay in 30 Days</strong>
+                  <span>0% interest | GST invoice provided</span>
+                </div>
+              </div>
+              <span class="badge-recommended">Recommended for B2B</span>
+              <i class="fas fa-chevron-right"></i>
+            </label>
+            <div class="method-details">
+              <div class="credit-info">
+                <div class="credit-benefit">
+                  <i class="fas fa-check-circle"></i>
+                  <div>
+                    <strong>Interest-Free Period</strong>
+                    <span>Pay within 30 days with 0% interest</span>
+                  </div>
+                </div>
+                <div class="credit-benefit">
+                  <i class="fas fa-file-invoice"></i>
+                  <div>
+                    <strong>GST Invoice</strong>
+                    <span>Claim up to 18% GST input credit</span>
+                  </div>
+                </div>
+                <div class="credit-benefit">
+                  <i class="fas fa-clock"></i>
+                  <div>
+                    <strong>Flexible Repayment</strong>
+                    <span>Extend credit limit for repeat orders</span>
+                  </div>
+                </div>
+                <p class="credit-note">
+                  <i class="fas fa-info-circle"></i>
+                  Your credit limit: <strong>₹1,00,000</strong> | Available: <strong>₹50,000</strong>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cash on Delivery -->
+          <div class="payment-method" data-method="cod">
+            <input type="radio" name="paymentMethod" id="cod" value="cod">
+            <label for="cod">
+              <div class="method-header">
+                <i class="fas fa-money-bill-wave"></i>
+                <div>
+                  <strong>Cash on Delivery</strong>
+                  <span>Pay when you receive</span>
+                </div>
+              </div>
+              <i class="fas fa-chevron-right"></i>
+            </label>
+            <div class="method-details">
+              <p class="cod-note">
+                <i class="fas fa-info-circle"></i>
+                Additional ₹50 handling fee applies. Available for orders below ₹50,000.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Delivery Address -->
+      <div class="section-card">
+        <h2><i class="fas fa-map-marker-alt"></i> Delivery Address</h2>
+        <div class="address-display" id="selectedAddress">
+          <strong>Office Address</strong>
+          <p>123 Industrial Area, Phase 2, Sector 45, Gurgaon, Haryana - 122003</p>
+          <p>Phone: +91 918275568</p>
+          <button class="change-btn">Change Address</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Order Summary -->
+    <aside class="order-summary">
+      <div class="summary-card">
+        <h3>Order Summary</h3>
+        
+        <div class="summary-items" id="summaryItems">
+          <!-- Populated by JS -->
+        </div>
+
+        <div class="price-breakdown">
+          <div class="price-row">
+            <span>Subtotal (<span id="itemCount">0</span> items)</span>
+            <span id="subtotal">₹0</span>
+          </div>
+          <div class="price-row">
+            <span>GST (18%)</span>
+            <span id="gst">₹0</span>
+          </div>
+          <div class="price-row">
+            <span>Shipping</span>
+            <span id="shipping" class="free">FREE</span>
+          </div>
+          <div class="price-row discount" id="discountRow" style="display: none;">
+            <span>Discount</span>
+            <span id="discount">-₹0</span>
+          </div>
+          <div class="price-row total">
+            <strong>Total Payable</strong>
+            <strong id="total">₹0</strong>
+          </div>
+        </div>
+
+        <div class="gst-benefits">
+          <i class="fas fa-info-circle"></i>
+          <span>Save up to 18% with GST invoice on business orders</span>
+        </div>
+
+        <button class="pay-btn" id="payBtn" disabled>
+          <i class="fas fa-lock"></i>
+          Select Payment Method
+        </button>
+
+        <div class="security-badges">
+          <div class="security-badge">
+            <i class="fas fa-shield-alt"></i>
+            <span>100% Secure</span>
+          </div>
+          <div class="security-badge">
+            <i class="fas fa-lock"></i>
+            <span>Encrypted</span>
+          </div>
+          <div class="security-badge">
+            <i class="fas fa-check-circle"></i>
+            <span>PCI DSS</span>
+          </div>
+        </div>
+
+        <div class="accepted-payments">
+          <span>We Accept:</span>
+          <div class="payment-icons">
+            <i class="fab fa-cc-visa"></i>
+            <i class="fab fa-cc-mastercard"></i>
+            <i class="fab fa-cc-amex"></i>
+            <i class="fab fa-google-pay"></i>
+            <i class="fab fa-apple-pay"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="support-card">
+        <i class="fas fa-headset"></i>
+        <div>
+          <strong>Need Help?</strong>
+          <p>Call <a href="tel:+91918275568">+91 918275568</a></p>
+          <p>Email <a href="mailto:sales@saiscientifics.com">sales@saiscientifics.com</a></p>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div>
+      <strong>Sai Scientifics</strong>
+      <p>100% Secure Payments | PCI DSS Certified</p>
+    </div>
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Refund Policy</a>
+    </div>
+  </footer>
+
+  <script src="api.js" defer></script>
+  <script src="Payment.js" defer></script>  <script>
+    window.addEventListener('load', () => { const overlay = document.getElementById('loadingOverlay'); if (overlay) overlay.classList.remove('active'); });
+    window.showToast = function(message, type = 'success', duration = 3000) { const toast = document.createElement('div'); toast.className = `toast ${type}`; toast.innerHTML = `<i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i><span>${message}</span>`; document.body.appendChild(toast); setTimeout(() => { toast.style.animation = 'slideOutRight 0.3s ease'; setTimeout(() => toast.remove(), 300); }, duration); };
+  </script></body>
+</html>

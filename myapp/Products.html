@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products - Sai Scientifics</title>
+  <meta name="description" content="Browse our comprehensive range of industrial supplies, safety equipment, power tools, and office supplies.">
+  <meta name="keywords" content="industrial supplies, safety equipment, power tools, electrical, office supplies, wholesale">
+  <meta name="author" content="Sai Scientifics">
+  <meta property="og:title" content="Products - Sai Scientifics">
+  <meta property="og:description" content="Quality industrial supplies and safety equipment for professionals.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1200&h=630&fit=crop">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Products - Sai Scientifics">
+  <meta name="twitter:description" content="Quality industrial supplies and safety equipment.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="Products.css">
+  <style>
+    .loading-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.95); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999; backdrop-filter: blur(4px); transition: opacity 0.3s ease; } .loading-overlay.active { opacity: 1; pointer-events: auto; } .loading-overlay:not(.active) { opacity: 0; pointer-events: none; } .loading-spinner { width: 50px; height: 50px; border: 4px solid #f0f0f0; border-top: 4px solid var(--brand-orange, #ff6b00); border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 16px; } @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } } .toast { position: fixed; bottom: 20px; right: 20px; background: white; padding: 16px 24px; border-radius: 8px; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15); display: flex; align-items: center; gap: 12px; z-index: 10000; animation: slideInRight 0.3s ease; } .toast.success { background: linear-gradient(135deg, #10b981 0%, #06a86d 100%); color: white; border-left: 4px solid #059669; } .toast.error { background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); color: white; border-left: 4px solid #b91c1c; } @keyframes slideInRight { from { transform: translateX(400px); opacity: 0; } to { transform: translateX(0); opacity: 1; } } html { scroll-behavior: smooth; }
+  </style>
+</head>
+<body>
+  <div class="loading-overlay active" id="loadingOverlay">
+    <div class="loading-spinner"></div>
+    <p>Loading products...</p>
+  </div>
+  <!-- Top Banner -->
+  <div class="top-banner">
+    <div class="left-section">
+      <a href="tel:+91918275568">Call: +91 918275568</a>
+      <a href="mailto:sales@saiscientifics.com">sales@saiscientifics.com</a>
+      <span class="banner-chip">48h quote turnaround</span>
+    </div>
+    <div class="top-right-section">
+      <a href="grievance.html" class="management-btn-top">Write to Management</a>
+      <a href="TrackOrder.html">Track Order</a>
+      <a href="WriteReview.html">Write Review</a>
+      <a href="https://wa.me/918790740446" target="_blank" rel="noreferrer" class="whatsapp-chat">
+        <i class="fab fa-whatsapp"></i> Chat
+      </a>
+      <a href="Requestforquotes.html">Request Quotes</a>
+    </div>
+  </div>
+
+  <!-- Main Header -->
+  <header class="main-header">
+    <div class="brand-block">
+      <a href="TopRowbanner.html" class="brand-name">sai<span class="brand-orange-text">scientifics</span></a>
+      <p>Industrial supplies for growing teams</p>
+    </div>
+
+    <form class="search-wrapper" id="searchForm">
+      <label class="visually-hidden" for="siteSearch">Search products</label>
+      <input type="text" id="siteSearch" placeholder="Search products, categories, brands..." autocomplete="off">
+      <button class="search-btn" type="submit"><i class="fas fa-search"></i></button>
+    </form>
+
+    <div class="header-actions">
+      <div id="authSection">
+        <a href="Login.html" class="action-link">Sign in</a>
+        <a href="Signup.html" class="ghost-btn">Create account</a>
+      </div>
+      <div id="userSection" style="display: none;">
+        <a href="Dashboard.html" class="action-link"><i class="fas fa-user-circle"></i> <span id="userName"></span></a>
+        <button type="button" class="ghost-btn" id="logoutBtn">Logout</button>
+      </div>
+      <a href="Cart.html" class="cart-link">
+        <i class="fas fa-shopping-cart"></i>
+        <span>Cart</span>
+        <span class="cart-count" id="cartCount">0</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Breadcrumb -->
+  <div class="breadcrumb">
+    <a href="TopRowbanner.html">Home</a>
+    <i class="fas fa-chevron-right"></i>
+    <span id="breadcrumbCategory">All Products</span>
+  </div>
+
+  <!-- Main Content -->
+  <main class="products-layout">
+    <!-- Sidebar Filters -->
+    <aside class="filters-sidebar" aria-label="Product Filters">
+      <div class="filters-header">
+        <h2>Filters</h2>
+        <button class="clear-filters" id="clearFilters">Clear All</button>
+      </div>
+
+      <!-- Category Filter -->
+      <div class="filter-group">
+        <h3 class="filter-title">Category</h3>
+        <div class="filter-options">
+          <label class="filter-checkbox">
+            <input type="checkbox" name="category" value="safety">
+            <span>Safety Equipment</span>
+            <span class="count">(245)</span>
+          </label>
+          <label class="filter-checkbox">
+            <input type="checkbox" name="category" value="tools">
+            <span>Power Tools</span>
+            <span class="count">(189)</span>
+          </label>
+          <label class="filter-checkbox">
+            <input type="checkbox" name="category" value="electrical">
+            <span>Electrical</span>
+            <span class="count">(312)</span>
+          </label>
+          <label class="filter-checkbox">
+            <input type="checkbox" name="category" value="office">
+            <span>Office Supplies</span>
+            <span class="count">(428)</span>
+          </label>
+          <label class="filter-checkbox">
+            <input type="checkbox" name="category" value="furniture">
+            <span>Furniture</span>
+            <span class="count">(156)</span>
+          </label>
+          <label class="filter-checkbox">
+            <input type="checkbox" name="category" value="cleaning">
+            <span>Cleaning Supplies</span>
+            <span class="count">(203)</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Price Range Filter -->
+      <div class="filter-group">
+        <h3 class="filter-title">Price Range</h3>
+        <div class="filter-options">
+          <label class="filter-checkbox">
+            <input type="checkbox" name="price" value="0-500">
+            <span>₹0 - ₹500</span>
+          </label>
+          <label class="filter-checkbox">
+            <input type="checkbox" name="price" value="500-1000">
+            <span>₹500 - ₹1,000</span>
+          </label>
+          <label class="filter-checkbox">
+            <input type="checkbox" name="price" value="1000-2500">
+            <span>₹1,000 - ₹2,500</span>
+          </label>
+          <label class="filter-checkbox">
+            <input type="checkbox" name="price" value="2500-5000">
+            <span>₹2,500 - ₹5,000</span>
+          </label>
+          <label class="filter-checkbox">
+            <input type="checkbox" name="price" value="5000+">
+            <span>Above ₹5,000</span>
+          </label>
+        </div>
+        <div class="custom-price-range">
+          <input type="number" placeholder="Min" id="minPrice">
+          <span>to</span>
+          <input type="number" placeholder="Max" id="maxPrice">
+          <button class="apply-btn">Apply</button>
+        </div>
+      </div>
+
+      <!-- Brand Filter -->
+      <div class="filter-group">
+        <h3 class="filter-title">Brand</h3>
+        <div class="brand-search">
+          <input type="text" placeholder="Search brands..." id="brandSearch">
+          <i class="fas fa-search"></i>
+        </div>
+        <div class="filter-options" id="brandOptions">
+          <label class="filter-checkbox">
+            <input type="checkbox" name="brand" value="3m">
+            <span>3M</span>
+            <span class="count">(45)</span>
+          </label>
+          <label class="filter-checkbox">
+            <input type="checkbox" name="brand" value="bosch">
+            <span>Bosch</span>
+            <span class="count">(67)</span>
+          </label>
+          <label class="filter-checkbox">
+            <input type="checkbox" name="brand" value="dewalt">
+            <span>DeWalt</span>
+            <span class="count">(52)</span>
+          </label>
+          <label class="filter-checkbox">
+            <input type="checkbox" name="brand" value="makita">
+            <span>Makita</span>
+            <span class="count">(38)</span>
+          </label>
+          <label class="filter-checkbox">
+            <input type="checkbox" name="brand" value="honeywell">
+            <span>Honeywell</span>
+            <span class="count">(41)</span>
+          </label>
+        </div>
+        <button class="show-more" id="showMoreBrands">Show More <i class="fas fa-chevron-down"></i></button>
+      </div>
+
+      <!-- Availability Filter -->
+      <div class="filter-group">
+        <h3 class="filter-title">Availability</h3>
+        <div class="filter-options">
+          <label class="filter-checkbox">
+            <input type="checkbox" name="availability" value="in-stock">
+            <span>In Stock</span>
+          </label>
+          <label class="filter-checkbox">
+            <input type="checkbox" name="availability" value="24hr-dispatch">
+            <span>24hr Dispatch</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Discount Filter -->
+      <div class="filter-group">
+        <h3 class="filter-title">Discount</h3>
+        <div class="filter-options">
+          <label class="filter-checkbox">
+            <input type="checkbox" name="discount" value="10">
+            <span>10% and above</span>
+          </label>
+          <label class="filter-checkbox">
+            <input type="checkbox" name="discount" value="20">
+            <span>20% and above</span>
+          </label>
+          <label class="filter-checkbox">
+            <input type="checkbox" name="discount" value="30">
+            <span>30% and above</span>
+          </label>
+          <label class="filter-checkbox">
+            <input type="checkbox" name="discount" value="40">
+            <span>40% and above</span>
+          </label>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Products Area -->
+    <section class="products-area">
+      <!-- Toolbar -->
+      <div class="products-toolbar">
+        <div class="toolbar-left">
+          <h1 id="pageTitle">All Products</h1>
+          <span class="product-count" id="productCount">Showing 1-24 of 10,000+ products</span>
+        </div>
+        <div class="toolbar-right">
+          <label for="sortBy">Sort by:</label>
+          <select id="sortBy">
+            <option value="relevance">Relevance</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="newest">Newest First</option>
+            <option value="popularity">Popularity</option>
+            <option value="discount">Discount</option>
+          </select>
+          <div class="view-toggle">
+            <button class="view-btn active" data-view="grid" title="Grid View">
+              <i class="fas fa-th"></i>
+            </button>
+            <button class="view-btn" data-view="list" title="List View">
+              <i class="fas fa-list"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Active Filters -->
+      <div class="active-filters" id="activeFilters" style="display: none;">
+        <span class="filter-label">Active Filters:</span>
+        <div class="filter-chips" id="filterChips"></div>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="products-grid" id="productsGrid">
+        <!-- Product cards will be dynamically inserted here -->
+      </div>
+
+      <!-- Pagination -->
+      <div class="pagination">
+        <button class="page-btn" id="prevPage" disabled>
+          <i class="fas fa-chevron-left"></i> Previous
+        </button>
+        <div class="page-numbers" id="pageNumbers"></div>
+        <button class="page-btn" id="nextPage">
+          Next <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div>
+      <strong>Sai Scientifics</strong>
+      <p>Procurement made simple for growing teams.</p>
+    </div>
+    <span>Support: sales@saiscientifics.com | +91 918275568</span>
+  </footer>
+
+  <script src="api.js" defer></script>
+  <script src="Products.js" defer></script>  <script>
+    window.addEventListener('load', () => { const overlay = document.getElementById('loadingOverlay'); if (overlay) overlay.classList.remove('active'); });
+    window.showToast = function(message, type = 'success', duration = 3000) { const toast = document.createElement('div'); toast.className = `toast ${type}`; toast.innerHTML = `<i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i><span>${message}</span>`; document.body.appendChild(toast); setTimeout(() => { toast.style.animation = 'slideOutRight 0.3s ease'; setTimeout(() => toast.remove(), 300); }, duration); };
+  </script></body>
+</html>

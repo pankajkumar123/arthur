@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Sai Scientifics</title>
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <main class="admin-page">
+    <header class="admin-header">
+      <div>
+        <p class="pill">Admin Console</p>
+        <h1>Sai Scientifics Admin</h1>
+        <p>Manage submissions, products, and categories.</p>
+      </div>
+      <div class="admin-actions">
+        <span id="adminName">Signed out</span>
+        <button id="logoutBtn" class="ghost-btn" type="button">Sign out</button>
+      </div>
+    </header>
+
+    <section class="admin-card" id="loginCard">
+      <h2>Admin login</h2>
+      <form id="loginForm">
+        <label>
+          Email
+          <input type="email" name="email" required>
+        </label>
+        <label>
+          Password
+          <input type="password" name="password" required>
+        </label>
+        <button type="submit" class="primary-btn">Sign in</button>
+        <p class="form-status" id="loginStatus" role="status"></p>
+      </form>
+    </section>
+
+    <section class="admin-card hidden" id="dashboard">
+      <div class="tab-row" role="tablist">
+        <button class="tab-btn active" data-tab="rfq">RFQ</button>
+        <button class="tab-btn" data-tab="credit">Credit</button>
+        <button class="tab-btn" data-tab="orders">Orders</button>
+        <button class="tab-btn" data-tab="reviews">Reviews</button>
+        <button class="tab-btn" data-tab="grievances">Grievances</button>
+        <button class="tab-btn" data-tab="support">Support</button>
+        <button class="tab-btn" data-tab="products">Products</button>
+        <button class="tab-btn" data-tab="categories">Categories</button>
+      </div>
+
+      <div class="tab-panel active" id="tab-rfq"></div>
+      <div class="tab-panel" id="tab-credit"></div>
+      <div class="tab-panel" id="tab-orders"></div>
+      <div class="tab-panel" id="tab-reviews"></div>
+      <div class="tab-panel" id="tab-grievances"></div>
+      <div class="tab-panel" id="tab-support"></div>
+      <div class="tab-panel" id="tab-products"></div>
+      <div class="tab-panel" id="tab-categories"></div>
+    </section>
+  </main>
+
+  <script src="api.js" defer></script>
+  <script src="admin.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details - Sai Scientifics</title>
+  <meta name="description" content="Explore detailed product specifications, pricing, and reviews. Find the perfect industrial supply for your needs.">
+  <meta name="keywords" content="product details, industrial equipment, specifications, pricing, reviews">
+  <meta name="author" content="Sai Scientifics">
+  <meta property="og:title" content="Product Details - Sai Scientifics">
+  <meta property="og:description" content="High-quality industrial product with detailed specifications and customer reviews.">
+  <meta property="og:type" content="product">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1572806365626-e0a39b593c2f?w=1200&h=630&fit=crop">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Product Details - Sai Scientifics">
+  <meta name="twitter:description" content="High-quality industrial product with customer reviews.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="ProductDetail.css">
+  <style>
+    .loading-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.95); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999; backdrop-filter: blur(4px); transition: opacity 0.3s ease; } .loading-overlay.active { opacity: 1; pointer-events: auto; } .loading-overlay:not(.active) { opacity: 0; pointer-events: none; } .loading-spinner { width: 50px; height: 50px; border: 4px solid #f0f0f0; border-top: 4px solid var(--brand-orange, #ff6b00); border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 16px; } @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } } .toast { position: fixed; bottom: 20px; right: 20px; background: white; padding: 16px 24px; border-radius: 8px; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15); display: flex; align-items: center; gap: 12px; z-index: 10000; animation: slideInRight 0.3s ease; } .toast.success { background: linear-gradient(135deg, #10b981 0%, #06a86d 100%); color: white; border-left: 4px solid #059669; } .toast.error { background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); color: white; border-left: 4px solid #b91c1c; } @keyframes slideInRight { from { transform: translateX(400px); opacity: 0; } to { transform: translateX(0); opacity: 1; } } html { scroll-behavior: smooth; }
+  </style>
+</head>
+<body>
+  <div class="loading-overlay active" id="loadingOverlay">
+    <div class="loading-spinner"></div>
+    <p>Loading product details...</p>
+  </div>
+  <!-- Top Banner -->
+  <div class="top-banner">
+    <div class="left-section">
+      <a href="tel:+91918275568">Call: +91 918275568</a>
+      <a href="mailto:sales@saiscientifics.com">sales@saiscientifics.com</a>
+      <span class="banner-chip">48h quote turnaround</span>
+    </div>
+    <div class="top-right-section">
+      <a href="grievance.html">Write to Management</a>
+      <a href="TrackOrder.html">Track Order</a>
+      <a href="https://wa.me/918790740446" target="_blank" rel="noreferrer" class="whatsapp-chat">
+        <i class="fab fa-whatsapp"></i> Chat
+      </a>
+    </div>
+  </div>
+
+  <!-- Main Header -->
+  <header class="main-header">
+    <div class="brand-block">
+      <a href="TopRowbanner.html" class="brand-name">sai<span class="brand-orange-text">scientifics</span></a>
+      <p>Industrial supplies for growing teams</p>
+    </div>
+
+    <form class="search-wrapper" id="searchForm">
+      <input type="text" id="siteSearch" placeholder="Search products, categories, brands..." autocomplete="off">
+      <button class="search-btn" type="submit"><i class="fas fa-search"></i></button>
+    </form>
+
+    <div class="header-actions">
+      <div id="authSection">
+        <a href="Login.html" class="action-link">Sign in</a>
+        <a href="Signup.html" class="ghost-btn">Create account</a>
+      </div>
+      <div id="userSection" style="display: none;">
+        <span class="action-link" id="userName"></span>
+        <button type="button" class="ghost-btn" id="logoutBtn">Logout</button>
+      </div>
+      <a href="Cart.html" class="cart-link">
+        <i class="fas fa-shopping-cart"></i>
+        <span>Cart</span>
+        <span class="cart-count" id="cartCount">0</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Breadcrumb -->
+  <div class="breadcrumb">
+    <a href="TopRowbanner.html">Home</a>
+    <i class="fas fa-chevron-right"></i>
+    <a href="Products.html">Products</a>
+    <i class="fas fa-chevron-right"></i>
+    <span id="categoryName">Safety Equipment</span>
+    <i class="fas fa-chevron-right"></i>
+    <span id="productName">Industrial Safety Helmet</span>
+  </div>
+
+  <!-- Product Detail Section -->
+  <main class="product-detail-layout">
+    <!-- Product Images -->
+    <div class="product-images-section">
+      <div class="main-image-container">
+        <span class="discount-badge">45% OFF</span>
+        <img id="mainImage" src="https://images.unsplash.com/photo-1572806365626-e0a39b593c2f?w=600&h=600&fit=crop" alt="Product">
+        <button class="wishlist-icon"><i class="far fa-heart"></i></button>
+      </div>
+      <div class="thumbnail-gallery">
+        <img class="thumbnail active" src="https://images.unsplash.com/photo-1572806365626-e0a39b593c2f?w=100&h=100&fit=crop" alt="View 1">
+        <img class="thumbnail" src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=100&h=100&fit=crop" alt="View 2">
+        <img class="thumbnail" src="https://images.unsplash.com/photo-1579618959146-e20a170f2c3a?w=100&h=100&fit=crop" alt="View 3">
+        <img class="thumbnail" src="https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=100&h=100&fit=crop" alt="View 4">
+      </div>
+    </div>
+
+    <!-- Product Info -->
+    <div class="product-info-section">
+      <div class="product-brand">3M</div>
+      <h1 class="product-title">Industrial Safety Helmet with Adjustable Ratchet - ISI Certified</h1>
+      
+      <div class="product-rating">
+        <div class="stars">★★★★☆</div>
+        <span class="rating-value">4.5</span>
+        <span class="rating-count">(245 ratings)</span>
+        <a href="#reviews" class="reviews-link">Write a review</a>
+      </div>
+
+      <div class="product-pricing">
+        <div class="current-price">₹549</div>
+        <div class="original-price">₹999</div>
+        <div class="savings">Save ₹450 (45%)</div>
+      </div>
+
+      <div class="gst-info">
+        <i class="fas fa-info-circle"></i>
+        <span>GST Invoice available. <strong>Save up to 18%</strong> on business purchases</span>
+      </div>
+
+      <div class="trust-indicators">
+        <span><i class="fas fa-shield-alt"></i> 100% Original</span>
+        <span><i class="fas fa-shipping-fast"></i> Ships in 24hrs</span>
+        <span><i class="fas fa-undo"></i> 7-day Returns</span>
+        <span><i class="fas fa-check-circle"></i> In Stock</span>
+      </div>
+
+      <!-- Quantity & Actions -->
+      <div class="purchase-section">
+        <div class="quantity-selector">
+          <label>Quantity:</label>
+          <button class="qty-btn" id="decreaseQty">-</button>
+          <input type="number" id="quantity" value="1" min="1" max="999">
+          <button class="qty-btn" id="increaseQty">+</button>
+        </div>
+        
+        <div class="action-buttons">
+          <button class="add-to-cart-btn">
+            <i class="fas fa-shopping-cart"></i> Add to Cart
+          </button>
+          <button class="buy-now-btn">
+            <i class="fas fa-bolt"></i> Buy Now
+          </button>
+        </div>
+<div class="secondary-actions">
+          <button class="rfq-btn">
+            <i class="fas fa-file-alt"></i> Request Quote
+          </button>
+          <button class="bulk-order-btn">
+            <i class="fas fa-boxes"></i> Bulk Order Inquiry
+          </button>
+        </div>
+      </div>
+
+      <!-- Bulk Pricing Table -->
+      <div class="bulk-pricing">
+        <h3><i class="fas fa-tag"></i> Bulk Pricing Tiers</h3>
+        <table>
+          <tr>
+            <th>Quantity</th>
+            <th>Price per Unit</th>
+            <th>Total Savings</th>
+          </tr>
+          <tr>
+            <td>1-10 units</td>
+            <td>₹549</td>
+            <td>45% off</td>
+          </tr>
+          <tr>
+            <td>11-50 units</td>
+            <td>₹499</td>
+            <td>50% off</td>
+          </tr>
+          <tr>
+            <td>51-100 units</td>
+            <td>₹449</td>
+            <td>55% off</td>
+          </tr>
+          <tr class="highlight">
+            <td>100+ units</td>
+            <td>₹399</td>
+            <td>60% off</td>
+          </tr>
+        </table>
+        <p class="bulk-note">For orders above 500 units, contact us at <a href="tel:+91918275568">+91 918275568</a> for custom pricing</p>
+      </div>
+
+      <!-- Delivery & Services -->
+      <div class="delivery-info">
+        <h3>Delivery & Services</h3>
+        <div class="delivery-details">
+          <div class="delivery-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>
+              <strong>Deliver to:</strong>
+              <input type="text" placeholder="Enter pincode" id="pincode">
+              <button class="check-btn">Check</button>
+            </div>
+          </div>
+          <div class="delivery-item">
+            <i class="fas fa-truck"></i>
+            <div>
+              <strong>Free Delivery</strong>
+              <span>on orders above ₹5,000</span>
+            </div>
+          </div>
+          <div class="delivery-item">
+            <i class="fas fa-clock"></i>
+            <div>
+              <strong>Estimated Delivery</strong>
+              <span>3-5 business days</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Seller Info -->
+    <div class="seller-info-section">
+      <div class="seller-card">
+        <h3>Seller Information</h3>
+        <div class="seller-details">
+          <strong>Sai Scientifics Pvt Ltd</strong>
+          <div class="seller-rating">
+            <span class="stars">★★★★★</span>
+            <span>4.8/5 (1,245 ratings)</span>
+          </div>
+          <p>Authorized distributor of 3M products</p>
+        </div>
+        <button class="contact-seller-btn">
+          <i class="fas fa-phone"></i> Contact Seller
+        </button>
+      </div>
+
+      <div class="payment-options">
+        <h3>Payment Options</h3>
+        <div class="payment-icons">
+          <i class="fab fa-cc-visa"></i>
+          <i class="fab fa-cc-mastercard"></i>
+          <i class="fas fa-university"></i>
+          <i class="fas fa-mobile-alt"></i>
+          <i class="fas fa-money-bill-wave"></i>
+        </div>
+        <ul>
+          <li><i class="fas fa-check"></i> Credit/Debit Cards</li>
+          <li><i class="fas fa-check"></i> UPI (PhonePe, GPay, Paytm)</li>
+          <li><i class="fas fa-check"></i> Net Banking</li>
+          <li><i class="fas fa-check"></i> Wallets</li>
+          <li><i class="fas fa-check"></i> 30-Day Credit (For businesses)</li>
+        </ul>
+      </div>
+
+      <div class="assurance-box">
+        <h3>Buyer Protection</h3>
+        <ul>
+          <li><i class="fas fa-shield-alt"></i> 100% Original Products</li>
+          <li><i class="fas fa-check-double"></i> Quality Assured</li>
+          <li><i class="fas fa-lock"></i> Secure Payments</li>
+          <li><i class="fas fa-undo-alt"></i> Easy Returns & Refunds</li>
+        </ul>
+      </div>
+    </div>
+  </main>
+
+  <!-- Product Details Tabs -->
+  <section class="product-tabs-section">
+    <div class="tabs-header">
+      <button class="tab-btn active" data-tab="specifications">Specifications</button>
+      <button class="tab-btn" data-tab="description">Description</button>
+      <button class="tab-btn" data-tab="reviews">Reviews (245)</button>
+      <button class="tab-btn" data-tab="qna">Q&A (12)</button>
+    </div>
+
+    <div class="tabs-content">
+      <!-- Specifications Tab -->
+      <div class="tab-panel active" id="specifications">
+        <h2>Technical Specifications</h2>
+        <table class="specs-table">
+          <tr>
+            <td>Brand</td>
+            <td>3M</td>
+          </tr>
+          <tr>
+            <td>Model Number</td>
+            <td>H-701R-UV</td>
+          </tr>
+          <tr>
+            <td>Material</td>
+            <td>High-Density Polyethylene (HDPE)</td>
+          </tr>
+          <tr>
+            <td>Color</td>
+            <td>Red</td>
+          </tr>
+          <tr>
+            <td>Weight</td>
+            <td>350 grams</td>
+          </tr>
+          <tr>
+            <td>Certification</td>
+            <td>ISI, EN397, ANSI Z89.1</td>
+          </tr>
+          <tr>
+            <td>Suspension Type</td>
+            <td>4-point ratchet suspension</td>
+          </tr>
+          <tr>
+            <td>Size</td>
+            <td>Adjustable (52-64 cm)</td>
+          </tr>
+          <tr>
+            <td>UV Protection</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td>Warranty</td>
+            <td>1 Year Manufacturer Warranty</td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- Description Tab -->
+      <div class="tab-panel" id="description">
+        <h2>Product Description</h2>
+        <p>The 3M H-701R-UV Industrial Safety Helmet is designed for maximum protection in hazardous work environments. Built with high-density polyethylene (HDPE), this helmet provides superior impact resistance and durability.</p>
+        
+        <h3>Key Features:</h3>
+        <ul>
+          <li>ISI certified for Indian safety standards</li>
+          <li>4-point ratchet suspension system for comfortable all-day wear</li>
+          <li>UV protection coating prevents degradation from sunlight exposure</li>
+          <li>Adjustable sizing (52-64 cm) fits most head sizes</li>
+          <li>Ventilation slots for improved airflow</li>
+          <li>Lightweight design (350g) reduces neck strain</li>
+          <li>Compatible with face shields, earmuffs, and other PPE accessories</li>
+        </ul>
+
+        <h3>Applications:</h3>
+        <ul>
+          <li>Construction sites</li>
+          <li>Manufacturing facilities</li>
+          <li>Mining operations</li>
+          <li>Oil & gas industry</li>
+          <li>Warehousing & logistics</li>
+          <li>Electrical work</li>
+        </ul>
+
+        <h3>Safety Standards:</h3>
+        <p>This helmet meets and exceeds the following safety certifications:</p>
+        <ul>
+          <li><strong>ISI (Indian Standards Institute)</strong> - IS 2925:1984</li>
+          <li><strong>EN397</strong> - European Standard for Industrial Safety Helmets</li>
+          <li><strong>ANSI Z89.1</strong> - American National Standards Institute</li>
+        </ul>
+
+        <h3>Maintenance Instructions:</h3>
+        <ul>
+          <li>Clean regularly with mild soap and water</li>
+          <li>Inspect for cracks or damage before each use</li>
+          <li>Replace every 3-5 years or after any impact</li>
+          <li>Store in cool, dry place away from direct sunlight</li>
+          <li>Do not paint or apply stickers (can weaken the shell)</li>
+        </ul>
+      </div>
+
+      <!-- Reviews Tab -->
+      <div class="tab-panel" id="reviews">
+        <div class="reviews-header">
+          <h2>Customer Reviews</h2>
+          <button class="write-review-btn">Write a Review</button>
+        </div>
+
+        <div class="reviews-summary">
+          <div class="rating-overview">
+            <div class="average-rating">4.5</div>
+            <div class="stars-large">★★★★☆</div>
+            <div class="total-reviews">Based on 245 reviews</div>
+          </div>
+          <div class="rating-distribution">
+            <div class="rating-bar">
+              <span>5★</span>
+              <div class="bar"><div class="fill" style="width: 68%"></div></div>
+              <span>167</span>
+            </div>
+            <div class="rating-bar">
+              <span>4★</span>
+              <div class="bar"><div class="fill" style="width: 20%"></div></div>
+              <span>49</span>
+            </div>
+            <div class="rating-bar">
+              <span>3★</span>
+              <div class="bar"><div class="fill" style="width: 8%"></div></div>
+              <span>20</span>
+            </div>
+            <div class="rating-bar">
+              <span>2★</span>
+              <div class="bar"><div class="fill" style="width: 3%"></div></div>
+              <span>7</span>
+            </div>
+            <div class="rating-bar">
+              <span>1★</span>
+              <div class="bar"><div class="fill" style="width: 1%"></div></div>
+              <span>2</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="reviews-list">
+          <div class="review-card">
+            <div class="review-header">
+              <div class="reviewer-info">
+                <strong>Rajesh Kumar</strong>
+                <span class="verified"><i class="fas fa-check-circle"></i> Verified Purchase</span>
+              </div>
+              <div class="review-rating">★★★★★</div>
+            </div>
+            <p class="review-text">Excellent quality helmet! Very comfortable to wear for long hours. The ratchet adjustment is smooth and holds securely. Worth every penny for workplace safety.</p>
+            <div class="review-footer">
+              <span class="review-date">2 weeks ago</span>
+              <button class="helpful-btn"><i class="far fa-thumbs-up"></i> Helpful (12)</button>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-header">
+              <div class="reviewer-info">
+                <strong>Priya Sharma</strong>
+                <span class="verified"><i class="fas fa-check-circle"></i> Verified Purchase</span>
+              </div>
+              <div class="review-rating">★★★★☆</div>
+            </div>
+            <p class="review-text">Good helmet overall. Lightweight and fits well. Only issue is that the chin strap could be better quality. But for the price, it's a solid choice.</p>
+            <div class="review-footer">
+              <span class="review-date">1 month ago</span>
+              <button class="helpful-btn"><i class="far fa-thumbs-up"></i> Helpful (8)</button>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-header">
+              <div class="reviewer-info">
+                <strong>Amit Patel</strong>
+                <span class="verified"><i class="fas fa-check-circle"></i> Verified Purchase</span>
+              </div>
+              <div class="review-rating">★★★★★</div>
+            </div>
+            <p class="review-text">Bought 50 units for our construction site. All workers are happy with the comfort and quality. Fast delivery and proper packaging. Highly recommended!</p>
+            <div class="review-footer">
+              <span class="review-date">1 month ago</span>
+              <button class="helpful-btn"><i class="far fa-thumbs-up"></i> Helpful (15)</button>
+            </div>
+          </div>
+        </div>
+
+        <button class="load-more-btn">Load More Reviews</button>
+      </div>
+
+      <!-- Q&A Tab -->
+      <div class="tab-panel" id="qna">
+        <div class="qna-header">
+          <h2>Questions & Answers</h2>
+          <button class="ask-question-btn">Ask a Question</button>
+        </div>
+
+        <div class="qna-list">
+          <div class="qna-card">
+            <div class="question">
+              <strong>Q:</strong> Does this helmet come with a chin strap?
+            </div>
+            <div class="answer">
+              <strong>A:</strong> Yes, all 3M H-701R-UV helmets include an adjustable chin strap for secure fitting.
+              <span class="answer-author">- Sai Scientifics Team</span>
+            </div>
+            <div class="qna-footer">
+              <span>Asked 2 weeks ago</span>
+              <button class="helpful-btn"><i class="far fa-thumbs-up"></i> Helpful (5)</button>
+            </div>
+          </div>
+
+          <div class="qna-card">
+            <div class="question">
+              <strong>Q:</strong> Is this suitable for electrical work?
+            </div>
+            <div class="answer">
+              <strong>A:</strong> This model is primarily for impact protection. For electrical work, we recommend our 3M Electrical Safety Helmet (Class E rated) which provides additional electrical insulation.
+              <span class="answer-author">- Sai Scientifics Team</span>
+            </div>
+            <div class="qna-footer">
+              <span>Asked 3 weeks ago</span>
+              <button class="helpful-btn"><i class="far fa-thumbs-up"></i> Helpful (8)</button>
+            </div>
+          </div>
+        </div>
+
+        <button class="load-more-btn">Load More Questions</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Products -->
+  <section class="related-products-section">
+    <h2>Related Products</h2>
+    <div class="related-products-grid" id="relatedProducts">
+      <!-- Dynamically populated -->
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div>
+      <strong>Sai Scientifics</strong>
+      <p>Procurement made simple for growing teams.</p>
+    </div>
+    <span>Support: sales@saiscientifics.com | +91 918275568</span>
+  </footer>
+
+  <script src="api.js" defer></script>
+  <script src="ProductDetail.js" defer></script>  <script>
+    window.addEventListener('load', () => { const overlay = document.getElementById('loadingOverlay'); if (overlay) overlay.classList.remove('active'); });
+    window.showToast = function(message, type = 'success', duration = 3000) { const toast = document.createElement('div'); toast.className = `toast ${type}`; toast.innerHTML = `<i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i><span>${message}</span>`; document.body.appendChild(toast); setTimeout(() => { toast.style.animation = 'slideOutRight 0.3s ease'; setTimeout(() => toast.remove(), 300); }, duration); };
+  </script></body>
+</html>

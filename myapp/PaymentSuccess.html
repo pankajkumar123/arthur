@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Successful - Sai Scientifics</title>
+  <link rel="stylesheet" href="Main.css">
+  <style>
+    .success-container {
+      max-width: 600px;
+      margin: 80px auto;
+      padding: 40px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .success-animation {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 30px;
+      background: linear-gradient(to bottom, #27ae60, #2ecc71);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      animation: scaleIn 0.6s ease-out;
+    }
+
+    @keyframes scaleIn {
+      0% {
+        transform: scale(0);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .success-header h1 {
+      color: #27ae60;
+      font-size: 32px;
+      margin: 20px 0 10px;
+    }
+
+    .success-header p {
+      color: #666;
+      font-size: 16px;
+      margin: 0 0 30px;
+    }
+
+    .invoice-details {
+      background: #f8f9fa;
+      padding: 25px;
+      border-radius: 8px;
+      margin-bottom: 30px;
+      text-align: left;
+    }
+
+    .invoice-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .invoice-row:last-child {
+      border-bottom: none;
+    }
+
+    .invoice-row label {
+      color: #666;
+      font-weight: 500;
+    }
+
+    .invoice-row .value {
+      color: #2c3e50;
+      font-weight: 600;
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 14px 24px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+      background: #3498db;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #2980b9;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+    }
+
+    .btn-secondary {
+      background: #ecf0f1;
+      color: #2c3e50;
+    }
+
+    .btn-secondary:hover {
+      background: #d5dbdb;
+    }
+
+    .info-box {
+      background: #d6eaf8;
+      padding: 15px;
+      border-radius: 6px;
+      border-left: 4px solid #2980b9;
+      margin-bottom: 20px;
+      color: #2c3e50;
+      font-size: 14px;
+    }
+
+    .next-steps {
+      background: #f0fdf4;
+      padding: 20px;
+      border-radius: 6px;
+      margin-bottom: 20px;
+      border-left: 4px solid #27ae60;
+    }
+
+    .next-steps h3 {
+      color: #27ae60;
+      margin-top: 0;
+    }
+
+    .next-steps ol {
+      margin: 10px 0;
+      padding-left: 20px;
+      color: #666;
+      text-align: left;
+    }
+
+    .next-steps li {
+      margin-bottom: 8px;
+    }
+
+    @media (max-width: 640px) {
+      .success-container {
+        margin: 40px 20px;
+        padding: 20px;
+      }
+
+      .success-header h1 {
+        font-size: 24px;
+      }
+
+      .action-buttons {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Banner -->
+  <div id="topBanner"></div>
+
+  <div class="success-container">
+    <!-- Success Animation -->
+    <div class="success-animation">✓</div>
+
+    <!-- Success Header -->
+    <div class="success-header">
+      <h1>Payment Successful!</h1>
+      <p>Your order has been confirmed and payment received</p>
+    </div>
+
+    <!-- Info Box -->
+    <div class="info-box">
+      📧 A confirmation email has been sent to your registered email address.
+    </div>
+
+    <!-- Invoice Details -->
+    <div class="invoice-details">
+      <div class="invoice-row">
+        <label>Order Number:</label>
+        <span id="orderNumber" class="value">-</span>
+      </div>
+      <div class="invoice-row">
+        <label>Transaction ID:</label>
+        <span id="transactionId" class="value">-</span>
+      </div>
+      <div class="invoice-row">
+        <label>Amount Paid:</label>
+        <span id="amountPaid" class="value">-</span>
+      </div>
+      <div class="invoice-row">
+        <label>Date & Time:</label>
+        <span id="dateTime" class="value">-</span>
+      </div>
+      <div class="invoice-row">
+        <label style="color: #27ae60;">Status:</label>
+        <span style="color: #27ae60;" class="value">Payment Confirmed ✓</span>
+      </div>
+    </div>
+
+    <!-- Next Steps -->
+    <div class="next-steps">
+      <h3>What happens next?</h3>
+      <ol>
+        <li>Your order will be verified and processed within 24 hours</li>
+        <li>You'll receive a shipment notification with tracking details</li>
+        <li>Track your order anytime in your Dashboard</li>
+        <li>Products will arrive at your address in 3-5 business days</li>
+        <li>Share your feedback or file a review after receiving the order</li>
+      </ol>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="action-buttons">
+      <button class="btn btn-primary" onclick="goToDashboard()">
+        View Dashboard
+      </button>
+      <button class="btn btn-secondary" onclick="goToHome()">
+        Continue Shopping
+      </button>
+    </div>
+  </div>
+
+  <script>
+    // Get parameters from URL
+    const orderId = new URLSearchParams(window.location.search).get('orderId');
+    const transactionId = new URLSearchParams(window.location.search).get('transactionId');
+
+    async function loadOrderDetails() {
+      try {
+        const token = localStorage.getItem('token');
+        const response = await fetch(
+          `http://localhost:4000/api/orders/${orderId}`,
+          {
+            headers: {
+              'Authorization': `Bearer ${token}`
+            }
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error('Failed to load order details');
+        }
+
+        const order = await response.json();
+
+        // Populate details
+        document.getElementById('orderNumber').textContent = order.order_number;
+        document.getElementById('transactionId').textContent = transactionId || 'N/A';
+        document.getElementById('amountPaid').textContent = `₹${order.total_amount.toLocaleString('en-IN', {maximumFractionDigits: 2})}`;
+        document.getElementById('dateTime').textContent = new Date().toLocaleString('en-IN');
+      } catch (error) {
+        console.error('Error loading order:', error);
+      }
+    }
+
+    function goToDashboard() {
+      window.location.href = 'Dashboard.html';
+    }
+
+    function goToHome() {
+      window.location.href = 'TopRowbanner.html';
+    }
+
+    // Load order details on page load
+    document.addEventListener('DOMContentLoaded', loadOrderDetails);
+  </script>
+
+  <!-- Top Banner Script -->
+  <script src="TopRowbanner.js"></script>
+</body>
+</html>

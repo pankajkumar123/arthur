@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+@import "tailwindcss";
+
+:root {
+  font-family: 'Manrope', 'Segoe UI', sans-serif;
+  
+  /* ShadCN UI Theme Variables */
+  --background: 39 27 12;
+  --foreground: 220 16 22;
+
+  --card: 0 0 100%;
+  --card-foreground: 220 16 22;
+
+  --popover: 0 0 100%;
+  --popover-foreground: 220 16 22;
+
+  --primary: 220 16 22;
+  --primary-foreground: 39 27 12;
+
+  --secondary: 25 5 85;
+  --secondary-foreground: 220 16 22;
+
+  --muted: 25 5 90;
+  --muted-foreground: 220 8 46;
+
+  --accent: 25 5 85;
+  --accent-foreground: 220 16 22;
+
+  --destructive: 0 84 60;
+  --destructive-foreground: 0 0 100%;
+
+  --border: 25 5 85;
+  --input: 25 5 85;
+  --ring: 220 16 22;
+
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: 220 16 12;
+  --foreground: 39 27 92;
+
+  --card: 220 16 12;
+  --card-foreground: 39 27 92;
+
+  --popover: 220 16 12;
+  --popover-foreground: 39 27 92;
+
+  --primary: 39 27 92;
+  --primary-foreground: 220 16 22;
+
+  --secondary: 220 10 20;
+  --secondary-foreground: 39 27 92;
+
+  --muted: 220 10 20;
+  --muted-foreground: 220 8 65;
+
+  --accent: 220 10 20;
+  --accent-foreground: 39 27 92;
+
+  --destructive: 0 62 50;
+  --destructive-foreground: 39 27 92;
+
+  --border: 220 10 20;
+  --input: 220 10 20;
+  --ring: 39 27 72;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Space Grotesk', 'Manrope', sans-serif;
+}

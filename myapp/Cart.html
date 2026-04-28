@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart - Sai Scientifics</title>
+  <meta name="description" content="Review your shopping cart and proceed to checkout. Fast and secure payment options available.">
+  <meta name="keywords" content="shopping cart, checkout, order summary, payment">
+  <meta name="author" content="Sai Scientifics">
+  <meta property="og:title" content="Shopping Cart - Sai Scientifics">
+  <meta property="og:description" content="Review your items and proceed to secure checkout.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=1200&h=630&fit=crop">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Shopping Cart - Sai Scientifics">
+  <meta name="twitter:description" content="Review your cart and checkout securely.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="Cart.css">
+  <style>
+    .loading-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.95); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999; backdrop-filter: blur(4px); transition: opacity 0.3s ease; } .loading-overlay.active { opacity: 1; pointer-events: auto; } .loading-overlay:not(.active) { opacity: 0; pointer-events: none; } .loading-spinner { width: 50px; height: 50px; border: 4px solid #f0f0f0; border-top: 4px solid var(--brand-orange, #ff6b00); border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 16px; } @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } } .toast { position: fixed; bottom: 20px; right: 20px; background: white; padding: 16px 24px; border-radius: 8px; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15); display: flex; align-items: center; gap: 12px; z-index: 10000; animation: slideInRight 0.3s ease; } .toast.success { background: linear-gradient(135deg, #10b981 0%, #06a86d 100%); color: white; border-left: 4px solid #059669; } .toast.error { background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); color: white; border-left: 4px solid #b91c1c; } @keyframes slideInRight { from { transform: translateX(400px); opacity: 0; } to { transform: translateX(0); opacity: 1; } } html { scroll-behavior: smooth; }
+  </style>
+</head>
+<body>
+  <div class="loading-overlay active" id="loadingOverlay">
+    <div class="loading-spinner"></div>
+    <p>Loading your cart...</p>
+  </div>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="TopRowbanner.html" class="nav-logo">
+        <i class="fas fa-arrow-left"></i> Back to Shop
+      </a>
+      <h1>🛒 Shopping Cart</h1>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="container">
+    <div class="cart-wrapper">
+      <!-- Cart Items Section -->
+      <section class="cart-items-section">
+        <div class="cart-header">
+          <h2>Cart Items</h2>
+          <span class="item-count" id="itemCount">0 items</span>
+        </div>
+
+        <!-- Sample Cart Items -->
+        <div class="cart-items" id="cartItems">
+          <!-- Items will be added dynamically -->
+        </div>
+
+        <!-- Empty Cart Message -->
+        <div class="empty-cart" id="emptyCart">
+          <i class="fas fa-inbox"></i>
+          <h3>Your cart is empty</h3>
+          <p>Start shopping to add items to your cart</p>
+          <a href="TopRowbanner.html" class="continue-btn">Continue Shopping</a>
+        </div>
+      </section>
+
+      <!-- Order Summary Section -->
+      <aside class="order-summary-section">
+        <div class="order-summary">
+          <h3>Order Summary</h3>
+
+          <div class="summary-row">
+            <span>Subtotal:</span>
+            <span id="subtotal">₹0</span>
+          </div>
+
+          <div class="summary-row">
+            <span>Shipping:</span>
+            <span id="shipping">₹0</span>
+          </div>
+
+          <div class="summary-row">
+            <span>Tax:</span>
+            <span id="tax">₹0</span>
+          </div>
+
+          <div class="summary-row discount">
+            <span>Discount:</span>
+            <span id="discount">₹0</span>
+          </div>
+
+          <div class="summary-divider"></div>
+
+          <div class="summary-row total">
+            <span>Total:</span>
+            <span id="total">₹0</span>
+          </div>
+
+          <!-- Promo Code -->
+          <div class="promo-section">
+            <input type="text" id="promoCode" placeholder="Enter promo code">
+            <button id="applyPromo" class="apply-promo-btn">Apply</button>
+          </div>
+
+          <!-- Checkout Button -->
+          <button class="checkout-btn" id="checkoutBtn">Proceed to Checkout</button>
+
+          <!-- Payment Options -->
+          <div class="payment-options">
+            <h4>Payment Options</h4>
+            <div class="option">
+              <input type="radio" id="creditCard" name="payment" value="credit-card">
+              <label for="creditCard">💳 Credit/Debit Card</label>
+            </div>
+            <div class="option">
+              <input type="radio" id="upi" name="payment" value="upi">
+              <label for="upi">📱 UPI</label>
+            </div>
+            <div class="option">
+              <input type="radio" id="netBanking" name="payment" value="net-banking">
+              <label for="netBanking">🏦 Net Banking</label>
+            </div>
+            <div class="option">
+              <input type="radio" id="buyCred" name="payment" value="buy-credit">
+              <label for="buyCred">💰 Buy on Credit</label>
+            </div>
+          </div>
+
+          <!-- Continue Shopping -->
+          <a href="TopRowbanner.html" class="continue-link">
+            <i class="fas fa-arrow-left"></i> Continue Shopping
+          </a>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- Checkout Modal -->
+  <div class="modal" id="checkoutModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="checkoutTitle">
+    <div class="modal-content">
+      <button type="button" class="close-btn" id="closeCheckout" aria-label="Close">&times;</button>
+      <h2 id="checkoutTitle">Checkout</h2>
+
+      <form id="checkoutForm">
+        <!-- Shipping Address -->
+        <fieldset>
+          <legend>Shipping Address</legend>
+
+          <div class="form-group">
+            <label for="fullName">Full Name *</label>
+            <input type="text" id="fullName" name="fullName" required>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone *</label>
+              <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="address">Address *</label>
+            <textarea id="address" name="address" rows="3" required></textarea>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="city">City *</label>
+              <input type="text" id="city" name="city" required>
+            </div>
+            <div class="form-group">
+              <label for="state">State *</label>
+              <input type="text" id="state" name="state" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="pincode">Pincode *</label>
+            <input type="text" id="pincode" name="pincode" pattern="[0-9]{6}" required>
+          </div>
+        </fieldset>
+
+        <!-- Payment Details -->
+        <fieldset>
+          <legend>Payment Details</legend>
+
+          <div class="form-group">
+            <label for="paymentMethod">Payment Method *</label>
+            <select id="paymentMethod" name="paymentMethod" required>
+              <option value="">Select Payment Method</option>
+              <option value="credit-card">Credit Card</option>
+              <option value="debit-card">Debit Card</option>
+              <option value="upi">UPI</option>
+              <option value="net-banking">Net Banking</option>
+              <option value="wallet">Wallet</option>
+            </select>
+          </div>
+
+          <div class="form-group checkbox">
+            <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
+            <label for="agreeTerms">I agree to the Terms & Conditions and Privacy Policy</label>
+          </div>
+        </fieldset>
+
+        <button type="submit" class="submit-btn">Place Order</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Success Modal -->
+  <div class="modal" id="successModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="successTitle" aria-describedby="successMessage">
+    <div class="modal-content success-modal">
+      <i class="fas fa-check-circle"></i>
+      <h2 id="successTitle">Order Placed Successfully!</h2>
+      <p id="successMessage">Thank you for your purchase. Your order has been confirmed.</p>
+      <p class="order-id">Order ID: <strong id="orderId"></strong></p>
+      <button class="submit-btn" onclick="location.href='TopRowbanner.html'">Continue Shopping</button>
+    </div>
+  </div>
+
+  <!-- Overlay -->
+  <div class="modal-overlay" id="modalOverlay" aria-hidden="true"></div>
+
+  <script src="api.js" defer></script>
+  <script src="ui-notify.js" defer></script>
+  <script src="Cart.js" defer></script>
+  <script>
+    window.addEventListener('load', () => { const overlay = document.getElementById('loadingOverlay'); if (overlay) overlay.classList.remove('active'); });
+    window.showToast = function(message, type = 'success', duration = 3000) { const toast = document.createElement('div'); toast.className = `toast ${type}`; toast.innerHTML = `<i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i><span>${message}</span>`; document.body.appendChild(toast); setTimeout(() => { toast.style.animation = 'slideOutRight 0.3s ease'; setTimeout(() => toast.remove(), 300); }, duration); };
+  </script>
+</body>
+</html>

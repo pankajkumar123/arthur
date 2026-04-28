@@ -1,0 +1,70 @@
+name: Deploy Backend to Render
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'myapp/server/**'
+      - '.github/workflows/render-backend.yml'
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Deploy Backend to Render
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check Render secrets
+        id: check-secrets
+        run: |
+          if [ -n "${{ secrets.RENDER_SERVICE_ID }}" ] && [ -n "${{ secrets.RENDER_API_KEY }}" ]; then
+            echo "secrets_available=true" >> $GITHUB_OUTPUT
+          else
+            echo "secrets_available=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Trigger Render deployment
+        if: steps.check-secrets.outputs.secrets_available == 'true'
+        run: |
+          curl -X POST "https://api.render.com/v1/services/${{ secrets.RENDER_SERVICE_ID }}/deploys" \
+            -H "Authorization: Bearer ${{ secrets.RENDER_API_KEY }}" \
+            -H "Content-Type: application/json" \
+            -d '{"clearCache": false}'
+
+      - name: Wait for deployment
+        if: steps.check-secrets.outputs.secrets_available == 'true'
+        run: |
+          echo "Waiting for Render deployment to complete..."
+          sleep 30
+          
+          # Check deployment status
+          RESPONSE=$(curl -s "https://api.render.com/v1/services/${{ secrets.RENDER_SERVICE_ID }}" \
+            -H "Authorization: Bearer ${{ secrets.RENDER_API_KEY }}")
+          
+          echo "Service status: $RESPONSE"
+
+      - name: Deployment summary
+        if: always()
+        run: |
+          echo "### Render Backend Deployment 🚀" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          if [ "${{ steps.check-secrets.outputs.secrets_available }}" == "true" ]; then
+            echo "✅ Backend deployment triggered successfully!" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "Check your Render dashboard for deployment progress:" >> $GITHUB_STEP_SUMMARY
+            echo "https://dashboard.render.com/" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "⚠️ Render secrets not configured" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "Add these secrets to your repository:" >> $GITHUB_STEP_SUMMARY
+            echo "- RENDER_SERVICE_ID" >> $GITHUB_STEP_SUMMARY
+            echo "- RENDER_API_KEY" >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: Skip deployment notification
+        if: steps.check-secrets.outputs.secrets_available == 'false'
+        run: |
+          echo "⚠️ Skipping Render deployment - secrets not configured"
+          echo "To enable Render deployments, add RENDER_SERVICE_ID and RENDER_API_KEY secrets"

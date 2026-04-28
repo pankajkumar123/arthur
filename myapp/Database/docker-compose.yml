@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: myapp-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: myapp
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  flyway:
+    image: flyway/flyway:10
+    container_name: myapp-flyway
+    depends_on:
+      - postgres
+    command:
+      - -url=jdbc:postgresql://postgres:5432/myapp
+      - -user=postgres
+      - -password=postgres
+      - -connectRetries=30
+      - migrate
+    volumes:
+      - ./migrations:/flyway/sql
+
+volumes:
+  pgdata:

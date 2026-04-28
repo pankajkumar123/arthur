@@ -1,0 +1,15 @@
+# Local deployment build artifacts (run locally, not committed)
+hostinger-deploy/
+hostinger-deploy-backend/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

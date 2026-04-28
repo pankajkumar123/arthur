@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Write a Review - Sai Scientifics</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="WriteReview.css">
+</head>
+<body>
+  <nav class="navbar">
+    <a href="TopRowbanner.html" class="nav-link">
+      <i class="fas fa-arrow-left"></i> Back to Home
+    </a>
+  </nav>
+
+  <main class="review-page">
+    <section class="review-hero">
+      <div>
+        <p class="pill">Share feedback</p>
+        <h1>Tell us about your experience</h1>
+        <p>Your review helps other buyers make confident decisions.</p>
+      </div>
+      <div class="review-product">
+        <img src="https://images.unsplash.com/photo-1519682337058-a94d519337bc?q=80&w=600&auto=format&fit=crop" alt="Office chair">
+        <div>
+          <h3>ErgoComfort Office Chair</h3>
+          <p>Order ID: ORD-12345678-0001</p>
+          <span>Delivered on Feb 4, 2026</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="review-form-card">
+      <form id="reviewForm">
+        <div class="rating-block">
+          <h2>Overall rating</h2>
+          <div class="rating-stars" role="radiogroup" aria-label="Rate this product">
+            <label>
+              <input type="radio" name="rating" value="1">
+              <span>1</span>
+            </label>
+            <label>
+              <input type="radio" name="rating" value="2">
+              <span>2</span>
+            </label>
+            <label>
+              <input type="radio" name="rating" value="3">
+              <span>3</span>
+            </label>
+            <label>
+              <input type="radio" name="rating" value="4">
+              <span>4</span>
+            </label>
+            <label>
+              <input type="radio" name="rating" value="5">
+              <span>5</span>
+            </label>
+          </div>
+          <p class="rating-label" id="ratingLabel">Select a rating</p>
+        </div>
+
+        <div class="form-grid">
+          <label>
+            Review title *
+            <input type="text" name="title" required placeholder="Summarize your experience">
+          </label>
+          <label>
+            Review details *
+            <textarea name="details" rows="5" required placeholder="What did you like or dislike?"></textarea>
+          </label>
+          <label>
+            Pros (optional)
+            <input type="text" name="pros" placeholder="Comfortable, easy to assemble">
+          </label>
+          <label>
+            Cons (optional)
+            <input type="text" name="cons" placeholder="Packaging could be better">
+          </label>
+        </div>
+
+        <div class="upload-grid">
+          <label class="upload-box" for="reviewPhotos">
+            <input type="file" id="reviewPhotos" accept=".jpg,.jpeg,.png" multiple hidden>
+            <span class="upload-icon"><i class="fas fa-camera"></i></span>
+            <span>Add photos (optional)</span>
+            <small>PNG, JPG up to 5MB each</small>
+          </label>
+          <div class="recommend">
+            <h4>Would you recommend this product?</h4>
+            <label>
+              <input type="checkbox" name="recommend">
+              Yes, I would recommend this product.
+            </label>
+          </div>
+        </div>
+
+        <div class="form-footer">
+          <p class="form-status" id="reviewStatus" role="status"></p>
+          <button type="submit" class="primary-btn">Submit review</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <script src="api.js" defer></script>
+  <script src="WriteReview.js" defer></script>
+</body>
+</html>

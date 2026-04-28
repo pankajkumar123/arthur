@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account - Sai Scientifics</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="auth.css">
+</head>
+<body>
+  <main class="auth-page">
+    <section class="auth-card">
+      <a href="TopRowbanner.html" style="color: var(--brand-muted); text-decoration: none; font-size: 14px; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 8px; transition: color 0.2s;" onmouseover="this.style.color='var(--brand-orange)'" onmouseout="this.style.color='var(--brand-muted)'">
+        <i class="fas fa-arrow-left"></i> Back to Home
+      </a>
+      <div>
+        <p class="pill">Create account</p>
+        <h1>Join Sai Scientifics</h1>
+        <p class="muted">Save carts, track orders, and request quotes faster.</p>
+      </div>
+
+      <form id="signupForm" class="auth-form">
+        <label>
+          Full name
+          <input type="text" name="fullName" required autocomplete="name" placeholder="John Doe">
+        </label>
+        <label>
+          Email
+          <input type="email" name="email" required autocomplete="email" placeholder="your@email.com">
+        </label>
+        <label>
+          Phone
+          <input type="tel" name="phone" pattern="[0-9]{10}" placeholder="10-digit mobile" autocomplete="tel">
+        </label>
+        <label>
+          Password
+          <div style="position: relative;">
+            <input type="password" name="password" id="signupPassword" minlength="8" required autocomplete="new-password" placeholder="Create a strong password" style="padding-right: 45px;">
+            <button type="button" id="toggleSignupPassword" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: var(--brand-muted); font-size: 18px;" aria-label="Toggle password visibility">
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+          <small style="color: #667; font-size: 12px; margin-top: 4px; display: block;">At least 8 characters with uppercase, lowercase, and number</small>
+        </label>
+        <label>
+          Confirm password
+          <input type="password" name="confirm" minlength="8" required autocomplete="new-password" placeholder="Confirm your password">
+        </label>
+        <button type="submit" class="primary-btn" id="signupSubmitBtn">
+          <span id="signupBtnText">Create account</span>
+          <span id="signupBtnSpinner" style="display: none;">Creating account...</span>
+        </button>
+        <p class="form-status" id="signupStatus" role="status"></p>
+      </form>
+
+      <p class="muted">Already have an account? <a href="Login.html">Sign in</a></p>
+    </section>
+  </main>
+
+  <script src="api.js" defer></script>
+  <script src="Signup.js" defer></script>
+</body>
+</html>

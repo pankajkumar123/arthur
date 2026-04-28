@@ -1,0 +1,68 @@
+name: Frontend CI/CD
+
+on:
+  push:
+    branches: [main, develop]
+    paths:
+      - 'myapp/src/**'
+      - 'myapp/package.json'
+      - '.github/workflows/frontend.yml'
+  pull_request:
+    branches: [main, develop]
+    paths:
+      - 'myapp/src/**'
+      - 'myapp/package.json'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      
+      - name: Install dependencies
+        working-directory: ./myapp
+        run: npm install
+      
+      - name: Lint code
+        working-directory: ./myapp
+        run: npm run lint
+      
+      - name: Run tests
+        working-directory: ./myapp
+        run: npm test
+      
+      - name: Build
+        working-directory: ./myapp
+        run: npm run build
+
+  deploy:
+    needs: test
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Check Netlify hook secret
+        id: netlify_guard
+        env:
+          NETLIFY_HOOK_ID: ${{ secrets.NETLIFY_HOOK_ID }}
+        run: |
+          if [ -n "$NETLIFY_HOOK_ID" ]; then
+            echo "should_run=true" >> "$GITHUB_OUTPUT"
+            echo "Netlify hook secret found."
+          else
+            echo "should_run=false" >> "$GITHUB_OUTPUT"
+            echo "Netlify hook secret missing. Skipping Netlify deployment."
+          fi
+      
+      - name: Deploy to Netlify
+        if: steps.netlify_guard.outputs.should_run == 'true'
+        run: |
+          curl -X POST https://api.netlify.com/build_hooks/${{ secrets.NETLIFY_HOOK_ID }}

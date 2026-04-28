@@ -1,0 +1,1449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sai Scientifics - Your trusted partner for industrial supplies. Browse 10L+ SKUs with bulk pricing, credit options, and 24h dispatch. Get a quote in 48 hours.">
+  <meta name="theme-color" content="#ff5a00">
+  <meta name="keywords" content="industrial supplies, bulk purchasing, procurement platform, business supplies, GST invoicing">
+  <meta name="author" content="Sai Scientifics">
+  
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Sai Scientifics - Industrial Supplies for Growing Teams">
+  <meta property="og:description" content="Browse 10L+ products with bulk pricing, credit options, and 24h dispatch. Get a quote in 48 hours.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://saiscientifics.com/og-image.jpg">
+  <meta property="og:url" content="https://saiscientifics.com">
+  
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Sai Scientifics - Industrial Supplies">
+  <meta name="twitter:description" content="Browse 10L+ products with bulk pricing, credit options, and 24h dispatch.">
+  <meta name="twitter:image" content="https://saiscientifics.com/og-image.jpg">
+  
+  <title>Sai Scientifics - Home | Industrial Supplies for Growing Teams</title>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="TopRowbanner.css">
+  
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    /* Loading Overlay */
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.3s ease;
+    }
+    
+    .loading-overlay.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    
+    /* Smooth animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .fade-in-up {
+      animation: fadeInUp 0.6s ease-out;
+    }
+    
+    /* Toast notifications */
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #22c55e;
+      color: white;
+      padding: 16px 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      animation: slideInRight 0.3s ease;
+      z-index: 10000;
+    }
+    
+    .toast.error {
+      background: #ef4444;
+    }
+    
+    .toast.info {
+      background: #3b82f6;
+    }
+    
+    @keyframes slideInRight {
+      from {
+        transform: translateX(400px);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+    
+    /* Categories Modal Styles */
+    .modal {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      z-index: 10001;
+      max-width: 900px;
+      width: 95%;
+      max-height: 85vh;
+      overflow-y: auto;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    
+    .modal.active {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 10000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    
+    .modal-content {
+      padding: 32px;
+    }
+    
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 16px;
+    }
+    
+    .modal-header h2 {
+      margin: 0;
+      font-size: 24px;
+      color: #111;
+    }
+    
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: #6b7280;
+      transition: color 0.3s ease;
+      padding: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .modal-close:hover {
+      color: #111;
+    }
+    
+    /* Feature 1: Search & Filter */
+    .search-filter-section {
+      margin-bottom: 24px;
+    }
+    
+    .search-box {
+      position: relative;
+      margin-bottom: 16px;
+    }
+    
+    .search-box i {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #9ca3af;
+      font-size: 16px;
+    }
+    
+    .search-box input {
+      width: 100%;
+      padding: 12px 40px;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .search-box input:focus {
+      outline: none;
+      border-color: #ff6b00;
+      box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.1);
+    }
+    
+    .filter-tabs {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    
+    .filter-tab {
+      padding: 10px 16px;
+      border: 1px solid #e5e7eb;
+      background: white;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      color: #6b7280;
+    }
+    
+    .filter-tab:hover {
+      border-color: #ff6b00;
+      color: #ff6b00;
+    }
+    
+    .filter-tab.active {
+      background: #ff6b00;
+      color: white;
+      border-color: #ff6b00;
+    }
+    
+    /* Feature 2: Categories Grid with Stats */
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    
+    .category-card-item {
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background: white;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .category-card-item:hover {
+      border-color: #ff6b00;
+      box-shadow: 0 8px 16px rgba(255, 107, 0, 0.15);
+      transform: translateY(-4px);
+    }
+    
+    .category-card-item.trending::before {
+      content: '🔥';
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      font-size: 18px;
+    }
+    
+    .category-card-item.bestseller::before {
+      content: '⭐';
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      font-size: 18px;
+    }
+    
+    .category-name {
+      font-weight: 600;
+      color: #111;
+      margin-bottom: 12px;
+      font-size: 16px;
+    }
+    
+    .category-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 13px;
+    }
+    
+    .stat-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #6b7280;
+    }
+    
+    .stat-item i {
+      color: #ff6b00;
+      width: 16px;
+    }
+    
+    .pricing-tiers {
+      display: flex;
+      gap: 6px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+    
+    .tier-badge {
+      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+      color: #92400e;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    
+    .modal-footer {
+      border-top: 1px solid #e5e7eb;
+      padding-top: 16px;
+      text-align: center;
+    }
+    
+    .info-text {
+      font-size: 14px;
+      color: #6b7280;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    
+    .primary-btn {
+      display: inline-block;
+      background: #ff6b00;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    
+    .primary-btn:hover {
+      background: #e64e00;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(255, 107, 0, 0.3);
+    }
+    
+    @media (max-width: 640px) {
+      .modal {
+        max-width: 90%;
+        max-height: 90vh;
+      }
+      
+      .modal-content {
+        padding: 20px;
+      }
+      
+      .categories-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 12px;
+      }
+      
+      .filter-tabs {
+        flex-direction: column;
+      }
+      
+      .filter-tab {
+        width: 100%;
+      }
+    }
+  </style>
+  
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX'); // Replace with your GA ID
+  </script>
+  
+  <!-- Facebook Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', 'YOUR_PIXEL_ID'); // Replace with your Pixel ID
+    fbq('track', 'PageView');
+  </script>
+  
+  <!-- Schema.org Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Sai Scientifics",
+    "url": "https://saiscientifics.com",
+    "logo": "https://saiscientifics.com/logo.png",
+    "description": "Your trusted partner for industrial supplies",
+    "sameAs": [
+      "https://www.facebook.com/SaiScientifics",
+      "https://twitter.com/SaiScientifics",
+      "https://www.linkedin.com/company/sai-scientifics"
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+91-918275568",
+      "contactType": "Customer Support",
+      "email": "sales@saiscientifics.com"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div class="loading-overlay" id="loadingOverlay" aria-live="polite" aria-busy="true">
+    <div class="spinner" role="status"></div>
+    <p class="loading-text">Loading...</p>
+  </div>
+
+  <a class="skip-link" href="#mainContent">Skip to content</a>
+
+  <div class="top-banner">
+    <div class="left-section">
+      <a href="tel:+91918275568">Call: +91 918275568</a>
+      <a href="mailto:sales@saiscientifics.com">sales@saiscientifics.com</a>
+      <span class="banner-chip">48h quote turnaround</span>
+    </div>
+    <div class="top-right-section">
+      <a href="grievance.html" class="management-btn-top">Write to Management</a>
+      <a href="TrackOrder.html">Track Order</a>
+      <a href="WriteReview.html">Write Review</a>
+      <a href="https://wa.me/9182755368" target="_blank" rel="noreferrer" class="whatsapp-chat">
+        <i class="fab fa-whatsapp"></i> Chat
+      </a>
+      <a href="Requestforquotes.html">Request Quotes</a>
+    </div>
+  </div>
+
+  <header class="main-header">
+    <div class="brand-block">
+      <a href="TopRowbanner.html" class="brand-name">sai<span class="brand-orange-text">scientifics</span></a>
+      <p>Industrial supplies for growing teams</p>
+    </div>
+
+    <form class="search-wrapper" id="searchForm">
+      <label class="visually-hidden" for="siteSearch">Search products</label>
+      <input type="text" id="siteSearch" placeholder="Search products, categories, brands..." autocomplete="off">
+      <button class="search-btn" type="submit"><i class="fas fa-search"></i></button>
+      <div class="search-suggestions" id="searchSuggestions" aria-live="polite"></div>
+    </form>
+
+    <div class="header-actions">
+      <div id="authSection">
+        <a href="Login.html" class="action-link" id="signInLink">Sign in</a>
+        <a href="Signup.html" class="ghost-btn" id="signUpLink">Create account</a>
+      </div>
+      <div id="userSection" style="display: none;">
+        <span class="action-link" id="userName" style="pointer-events: none;"></span>
+        <button type="button" class="ghost-btn" id="logoutBtn">Logout</button>
+      </div>
+      <a href="BuyOnCredit.html" class="action-link">Buy on Credit</a>
+      <a href="HelpCentre.html" class="action-link">Help Centre</a>
+      <a href="Requestforquotes.html" class="primary-btn">Get a Quote</a>
+      <a href="WriteReview.html" class="ghost-btn">Write Review</a>
+      <a href="Cart.html" class="cart-link">
+        <i class="fas fa-shopping-cart"></i>
+        <span>Cart</span>
+        <span class="cart-count" id="cartCount">0</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Trust Badges Bar -->
+  <div class="trust-badges-bar">
+    <div class="trust-badge">
+      <i class="fas fa-certificate"></i>
+      <span>100% Original</span>
+    </div>
+    <div class="trust-badge">
+      <i class="fas fa-shield-alt"></i>
+      <span>Secure Payments</span>
+    </div>
+    <div class="trust-badge">
+      <i class="fas fa-shipping-fast"></i>
+      <span>Ships within 24hrs</span>
+    </div>
+    <div class="trust-badge">
+      <i class="fas fa-undo"></i>
+      <span>7-Day Returns</span>
+    </div>
+    <div class="trust-badge">
+      <i class="fas fa-headset"></i>
+      <span>24/7 Support</span>
+    </div>
+    <div class="trust-badge">
+      <i class="fas fa-file-invoice"></i>
+      <span>GST Benefits</span>
+    </div>
+  </div>
+
+  <!-- GST Benefits Banner -->
+  <div class="gst-banner">
+    <div class="gst-content">
+      <i class="fas fa-percent"></i>
+      <div>
+        <strong>Get up to 18% GST Benefits</strong>
+        <p>Auto-generated GST invoices for all business purchases</p>
+      </div>
+    </div>
+    <div class="payment-methods">
+      <span class="payment-label">We Accept:</span>
+      <div class="payment-icons">
+        <i class="fab fa-cc-visa" title="Visa"></i>
+        <i class="fab fa-cc-mastercard" title="Mastercard"></i>
+        <i class="fas fa-building" title="Net Banking"></i>
+        <i class="fas fa-mobile-alt" title="UPI"></i>
+        <i class="fas fa-credit-card" title="Debit Card"></i>
+      </div>
+    </div>
+  </div>
+
+  <main class="layout" id="mainContent">
+    <aside class="category-card" aria-label="Categories">
+      <div class="category-header">
+        <h2>Browse categories</h2>
+        <span>25+ product groups</span>
+      </div>
+      <ul class="category-list">
+        <li><button type="button" data-category="Office Supplies">Office Supplies</button></li>
+        <li><button type="button" data-category="Material Handling">Material Handling and Packaging</button></li>
+        <li><button type="button" data-category="Agriculture">Agriculture, Garden & Landscaping</button></li>
+        <li><button type="button" data-category="Cleaning">Cleaning</button></li>
+        <li><button type="button" data-category="Power Tools">Power Tools</button></li>
+        <li><button type="button" data-category="Hand Tools">Hand Tools</button></li>
+        <li><button type="button" data-category="Testing">Testing & Measuring</button></li>
+        <li><button type="button" data-category="Furniture">Furniture & Hospitality</button></li>
+        <li><button type="button" data-category="Safety">Safety</button></li>
+        <li><button type="button" data-category="Hydraulics">Hydraulics & Pneumatics</button></li>
+        <li><button type="button" data-category="Electrical">Electrical</button></li>
+        <li><button type="button" data-category="IT Security">IT Security</button></li>
+      </ul>
+      <div class="see-all">
+        <a href="#">See all categories</a>
+      </div>
+    </aside>
+
+    <section class="content-area">
+      <div class="hero-grid">
+        <div class="hero-card">
+          <div class="hero-copy">
+            <p class="pill">Procurement platform</p>
+            <h1>Everything your team needs to move faster</h1>
+            <p>Buy across 10L+ SKUs with bulk pricing, credit options, and dedicated account support.</p>
+            <div class="hero-actions">
+              <a href="Requestforquotes.html" class="primary-btn">Get a quote in 48h</a>
+              <a href="HelpCentre.html" class="secondary-btn">Talk to an expert</a>
+            </div>
+            <div class="hero-metrics">
+              <div>
+                <strong>10L+</strong>
+                <span>Products</span>
+              </div>
+              <div>
+                <strong>24h</strong>
+                <span>Dispatch on essentials</span>
+              </div>
+              <div>
+                <strong>0%</strong>
+                <span>Interest for 30 days</span>
+              </div>
+            </div>
+          </div>
+          <div class="hero-visual">
+            <div class="carousel-container" aria-label="Featured promotions">
+              <div class="slider">
+                <div class="slide active">
+                  <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1200&auto=format&fit=crop" alt="Warehouse essentials">
+                </div>
+                <div class="slide">
+                  <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=1200&auto=format&fit=crop" alt="Industrial tools">
+                </div>
+              </div>
+              <div class="dots-container">
+                <button class="dot active" data-slide="0" aria-label="Slide 1"></button>
+                <button class="dot" data-slide="1" aria-label="Slide 2"></button>
+              </div>
+            </div>
+            <div class="hero-badges">
+              <span>Trusted by 30k+ teams</span>
+              <span>GST-ready invoicing</span>
+              <span>Dedicated support</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-side">
+          <div class="side-card accent">
+            <h3>Buy on credit</h3>
+            <p>Instant eligibility, repay in 30/60/90 days.</p>
+            <a href="BuyOnCredit.html">Check eligibility</a>
+          </div>
+          <div class="side-card">
+            <h3>Priority dispatch</h3>
+            <p>Essentials ship within 24 hours to 120+ cities.</p>
+            <a href="TrackOrder.html">Track deliveries</a>
+          </div>
+          <div class="side-card">
+            <h3>Dedicated account manager</h3>
+            <p>Get a single point of contact for large orders.</p>
+            <a href="HelpCentre.html">Talk to us</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Deal of the Day Section -->
+      <section class="deals-section" aria-label="Daily Deals">
+        <div class="deals-header">
+          <div class="deals-title">
+            <div class="deals-icon-wrapper">
+              <i class="fas fa-bolt"></i>
+              <span class="icon-glow"></span>
+            </div>
+            <div class="deals-text">
+              <h2>🔥 Deal of the Day</h2>
+              <p>Limited time offers - grab them before they're gone!</p>
+            </div>
+          </div>
+          <div class="deals-timer-wrapper">
+            <div class="timer-label">⏰ Ends in</div>
+            <div class="deal-timer">
+              <div class="timer-unit">
+                <span class="timer-value" id="hoursTimer">23</span>
+                <span class="timer-label-small">Hours</span>
+              </div>
+              <span class="timer-separator">:</span>
+              <div class="timer-unit">
+                <span class="timer-value" id="minutesTimer">45</span>
+                <span class="timer-label-small">Mins</span>
+              </div>
+              <span class="timer-separator">:</span>
+              <div class="timer-unit">
+                <span class="timer-value" id="secondsTimer">12</span>
+                <span class="timer-label-small">Secs</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="deals-carousel">
+          <button class="carousel-arrow left" aria-label="Previous deals"><i class="fas fa-chevron-left"></i></button>
+          <div class="deals-track">
+            <article class="deal-card">
+              <div class="deal-badges">
+                <span class="deal-badge primary">45% OFF</span>
+                <span class="deal-badge hot">🔥 HOT</span>
+              </div>
+              <div class="deal-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1572806365626-e0a39b593c2f?w=300&h=300&fit=crop" alt="Industrial Safety Helmet">
+                <div class="quick-view">Quick View</div>
+              </div>
+              <div class="deal-info">
+                <div class="deal-rating">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+                  <span class="rating-count">(2.4k)</span>
+                </div>
+                <h3>Industrial Safety Helmet</h3>
+                <div class="deal-pricing">
+                  <span class="deal-price">₹549</span>
+                  <span class="deal-original">₹999</span>
+                  <span class="deal-save">Save ₹450</span>
+                </div>
+                <div class="deal-urgency">
+                  <div class="urgency-bar">
+                    <div class="urgency-fill" style="width: 65%"></div>
+                  </div>
+                  <span class="urgency-text">Only 15 left - 65% claimed!</span>
+                </div>
+                <div class="deal-footer">
+                  <span class="deal-stock"><i class="fas fa-check-circle"></i> In Stock</span>
+                  <button class="add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add</button>
+                </div>
+              </div>
+            </article>
+            <article class="deal-card">
+              <div class="deal-badges">
+                <span class="deal-badge primary">35% OFF</span>
+                <span class="deal-badge trending">📈 Trending</span>
+              </div>
+              <div class="deal-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=300&h=300&fit=crop" alt="Power Drill Set">
+                <div class="quick-view">Quick View</div>
+              </div>
+              <div class="deal-info">
+                <div class="deal-rating">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <span class="rating-count">(1.8k)</span>
+                </div>
+                <h3>18V Cordless Power Drill</h3>
+                <div class="deal-pricing">
+                  <span class="deal-price">₹1,949</span>
+                  <span class="deal-original">₹2,999</span>
+                  <span class="deal-save">Save ₹1,050</span>
+                </div>
+                <div class="deal-urgency">
+                  <div class="urgency-bar">
+                    <div class="urgency-fill" style="width: 80%"></div>
+                  </div>
+                  <span class="urgency-text">Only 8 left - 80% claimed!</span>
+                </div>
+                <div class="deal-footer">
+                  <span class="deal-stock"><i class="fas fa-check-circle"></i> In Stock</span>
+                  <button class="add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add</button>
+                </div>
+              </div>
+            </article>
+            <article class="deal-card best-deal">
+              <div class="deal-badges">
+                <span class="deal-badge primary best">50% OFF</span>
+                <span class="deal-badge bestseller">⭐ Best Seller</span>
+              </div>
+              <div class="deal-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1585435557343-3b092031a831?w=300&h=300&fit=crop" alt="Office Chair">
+                <div class="quick-view">Quick View</div>
+              </div>
+              <div class="deal-info">
+                <div class="deal-rating">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <span class="rating-count">(3.2k)</span>
+                </div>
+                <h3>Ergonomic Office Chair</h3>
+                <div class="deal-pricing">
+                  <span class="deal-price">₹3,499</span>
+                  <span class="deal-original">₹6,999</span>
+                  <span class="deal-save">Save ₹3,500</span>
+                </div>
+                <div class="deal-urgency">
+                  <div class="urgency-bar">
+                    <div class="urgency-fill" style="width: 90%"></div>
+                  </div>
+                  <span class="urgency-text">Only 4 left - 90% claimed!</span>
+                </div>
+                <div class="deal-footer">
+                  <span class="deal-stock"><i class="fas fa-check-circle"></i> In Stock</span>
+                  <button class="add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add</button>
+                </div>
+              </div>
+            </article>
+            <article class="deal-card">
+              <div class="deal-badges">
+                <span class="deal-badge primary">40% OFF</span>
+              </div>
+              <div class="deal-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1504198266287-1659872e6590?w=300&h=300&fit=crop" alt="Industrial Gloves">
+                <div class="quick-view">Quick View</div>
+              </div>
+              <div class="deal-info">
+                <div class="deal-rating">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <span class="rating-count">(956)</span>
+                </div>
+                <h3>Cut Resistant Gloves (12pk)</h3>
+                <div class="deal-pricing">
+                  <span class="deal-price">₹899</span>
+                  <span class="deal-original">₹1,499</span>
+                  <span class="deal-save">Save ₹600</span>
+                </div>
+                <div class="deal-urgency">
+                  <div class="urgency-bar">
+                    <div class="urgency-fill" style="width: 45%"></div>
+                  </div>
+                  <span class="urgency-text">Only 25 left - 45% claimed!</span>
+                </div>
+                <div class="deal-footer">
+                  <span class="deal-stock"><i class="fas fa-check-circle"></i> In Stock</span>
+                  <button class="add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add</button>
+                </div>
+              </div>
+            </article>
+            <article class="deal-card">
+              <div class="deal-badges">
+                <span class="deal-badge primary">30% OFF</span>
+                <span class="deal-badge new">✨ New</span>
+              </div>
+              <div class="deal-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=300&h=300&fit=crop" alt="Tool Set">
+                <div class="quick-view">Quick View</div>
+              </div>
+              <div class="deal-info">
+                <div class="deal-rating">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+                  <span class="rating-count">(1.5k)</span>
+                </div>
+                <h3>Professional Tool Set (108pc)</h3>
+                <div class="deal-pricing">
+                  <span class="deal-price">₹4,899</span>
+                  <span class="deal-original">₹6,999</span>
+                  <span class="deal-save">Save ₹2,100</span>
+                </div>
+                <div class="deal-urgency">
+                  <div class="urgency-bar">
+                    <div class="urgency-fill" style="width: 55%"></div>
+                  </div>
+                  <span class="urgency-text">Only 18 left - 55% claimed!</span>
+                </div>
+                <div class="deal-footer">
+                  <span class="deal-stock"><i class="fas fa-check-circle"></i> In Stock</span>
+                  <button class="add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add</button>
+                </div>
+              </div>
+            </article>
+          </div>
+          <button class="carousel-arrow right" aria-label="Next deals"><i class="fas fa-chevron-right"></i></button>
+        </div>
+      </section>
+
+      <!-- B2B Benefits Section -->
+      <section class="b2b-benefits">
+        <h2>Why Businesses Choose Sai Scientifics</h2>
+        <div class="benefits-grid">
+          <div class="benefit-card">
+            <div class="benefit-icon">
+              <i class="fas fa-percent"></i>
+            </div>
+            <h3>Bulk Pricing</h3>
+            <p>Get wholesale rates on volume orders. Save up to 40% on bulk purchases.</p>
+          </div>
+          <div class="benefit-card">
+            <div class="benefit-icon">
+              <i class="fas fa-file-invoice-dollar"></i>
+            </div>
+            <h3>GST Invoicing</h3>
+            <p>Auto-generated GST invoices. Claim up to 18% input tax credit.</p>
+          </div>
+          <div class="benefit-card">
+            <div class="benefit-icon">
+              <i class="fas fa-hand-holding-usd"></i>
+            </div>
+            <h3>30-Day Credit</h3>
+            <p>Interest-free credit facility. Pay after delivery for verified businesses.</p>
+          </div>
+          <div class="benefit-card">
+            <div class="benefit-icon">
+              <i class="fas fa-user-tie"></i>
+            </div>
+            <h3>Dedicated Manager</h3>
+            <p>Personal account manager for orders above ₹50,000 per month.</p>
+          </div>
+          <div class="benefit-card">
+            <div class="benefit-icon">
+              <i class="fas fa-clock"></i>
+            </div>
+            <h3>Quick Dispatch</h3>
+            <p>24-hour dispatch on 10,000+ essential products across India.</p>
+          </div>
+          <div class="benefit-card">
+            <div class="benefit-icon">
+              <i class="fas fa-headphones-alt"></i>
+            </div>
+            <h3>Priority Support</h3>
+            <p>Dedicated helpline: +91 918275568. Email: sales@saiscientifics.com</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Popular Categories Grid -->
+      <section class="popular-categories" aria-label="Popular Categories">
+        <h2>Popular Categories</h2>
+        <div class="categories-grid">
+          <a href="#" class="category-item">
+            <i class="fas fa-hard-hat"></i>
+            <span>Safety Equipment</span>
+          </a>
+          <a href="#" class="category-item">
+            <i class="fas fa-tools"></i>
+            <span>Power Tools</span>
+          </a>
+          <a href="#" class="category-item">
+            <i class="fas fa-bolt"></i>
+            <span>Electrical</span>
+          </a>
+          <a href="#" class="category-item">
+            <i class="fas fa-chair"></i>
+            <span>Office Furniture</span>
+          </a>
+          <a href="#" class="category-item">
+            <i class="fas fa-wrench"></i>
+            <span>Hand Tools</span>
+          </a>
+          <a href="#" class="category-item">
+            <i class="fas fa-spray-can"></i>
+            <span>Cleaning Supplies</span>
+          </a>
+          <a href="#" class="category-item">
+            <i class="fas fa-ruler"></i>
+            <span>Testing & Measuring</span>
+          </a>
+          <a href="#" class="category-item">
+            <i class="fas fa-boxes"></i>
+            <span>Packaging</span>
+          </a>
+        </div>
+      </section>
+
+      <div class="promo-grid">
+        <article class="promo-card teal">
+          <div>
+            <small>Starts at INR 60</small>
+            <h3>Unbeatable prices on daily essentials</h3>
+            <p>Bulk discounts + fast dispatch.</p>
+            <button class="chip-btn">Shop essentials</button>
+          </div>
+          <img src="https://images.unsplash.com/photo-1489515217757-5fd1be406fef?q=80&w=600&auto=format&fit=crop" alt="Office supplies">
+        </article>
+
+        <article class="promo-card amber">
+          <div>
+            <small>Special bundles</small>
+            <h3>Power tools for every task</h3>
+            <p>Curated kits for maintenance teams.</p>
+            <button class="chip-btn">Explore tools</button>
+          </div>
+          <img src="https://images.unsplash.com/photo-1505798577917-a65157d3320a?q=80&w=600&auto=format&fit=crop" alt="Power tools">
+        </article>
+      </div>
+
+      <section class="featured-section" aria-label="Featured products">
+        <div class="featured-header">
+          <div>
+            <p class="pill">Featured products</p>
+            <h2>toolywood :)</h2>
+            <p>Bulk-ready SKUs from verified suppliers.</p>
+          </div>
+          <div class="featured-controls">
+            <button class="featured-btn" type="button" data-action="prev" aria-label="Previous products">
+              <i class="fas fa-arrow-left"></i>
+            </button>
+            <button class="featured-btn" type="button" data-action="next" aria-label="Next products">
+              <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+        <div class="featured-carousel" data-carousel="featured">
+          <div class="featured-track">
+            <article class="featured-card">
+              <div>
+                <span class="featured-tag">Office</span>
+                <h3>Ergo Task Chair</h3>
+                <p>Premium lumbar support for 10-hour shifts.</p>
+              </div>
+              <button class="chip-btn">View details</button>
+            </article>
+            <article class="featured-card">
+              <div>
+                <span class="featured-tag">Safety</span>
+                <h3>Industrial Gloves Pack</h3>
+                <p>Cut resistance level 5, pack of 12.</p>
+              </div>
+              <button class="chip-btn">View details</button>
+            </article>
+            <article class="featured-card">
+              <div>
+                <span class="featured-tag">Tools</span>
+                <h3>Cordless Drill Kit</h3>
+                <p>18V kit with 2 batteries and case.</p>
+              </div>
+              <button class="chip-btn">View details</button>
+            </article>
+            <article class="featured-card">
+              <div>
+                <span class="featured-tag">Cleaning</span>
+                <h3>Facility Starter Pack</h3>
+                <p>Sanitizers, mops, and refill kits.</p>
+              </div>
+              <button class="chip-btn">View details</button>
+            </article>
+            <article class="featured-card">
+              <div>
+                <span class="featured-tag">Electrical</span>
+                <h3>Power Strip Pro</h3>
+                <p>Surge protected, 8-outlet heavy duty.</p>
+              </div>
+              <button class="chip-btn">View details</button>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <div class="trust-row">
+        <div class="trust-item">
+          <i class="fas fa-truck"></i>
+          <h4>Free Shipping</h4>
+          <p>On bulk orders above ₹5,000</p>
+        </div>
+        <div class="trust-item">
+          <i class="fas fa-credit-card"></i>
+          <h4>Flexible Payments</h4>
+          <p>UPI, cards, net banking, 30-day credit</p>
+        </div>
+        <div class="trust-item">
+          <i class="fas fa-check-circle"></i>
+          <h4>100% Original Products</h4>
+          <p>Verified suppliers, quality assured</p>
+        </div>
+        <div class="trust-item">
+          <i class="fas fa-redo"></i>
+          <h4>Easy Returns</h4>
+          <p>7-day hassle-free returns on all orders</p>
+        </div>
+      </div>
+
+      <div class="category-highlight shadow-soft" id="categoryHighlight">
+        <h3>Selected category: <span id="selectedCategory">Office Supplies</span></h3>
+        <p>Browse curated products and bulk deals tailored for your team.</p>
+      </div>
+
+      <div class="collection-grid">
+        <article>
+          <h3>Safety essentials</h3>
+          <p>Helmets, gloves, shoes, and signage.</p>
+          <a href="#">Shop safety</a>
+        </article>
+        <article>
+          <h3>Facility maintenance</h3>
+          <p>Cleaning, sanitation, and hygiene kits.</p>
+          <a href="#">Shop maintenance</a>
+        </article>
+        <article>
+          <h3>Office & furniture</h3>
+          <p>Chairs, desks, storage, and lighting.</p>
+          <a href="#">Shop furniture</a>
+        </article>
+        <article>
+          <h3>Testing instruments</h3>
+          <p>Measurement and calibration tools.</p>
+          <a href="#">Shop instruments</a>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- Scroll to Top Button -->
+  <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <!-- Company Info -->
+      <div class="footer-section">
+        <strong class="footer-logo">sai<span style="color: var(--brand-orange);">scientifics</span></strong>
+        <p>Your trusted partner for industrial supplies. Procurement made simple for growing teams.</p>
+        <div class="footer-social">
+          <a href="https://wa.me/9182755368" target="_blank" rel="noopener" title="WhatsApp" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          <a href="mailto:sales@saiscientifics.com" title="Email" aria-label="Send email"><i class="fas fa-envelope"></i></a>
+          <a href="tel:+91918275568" title="Phone" aria-label="Call us"><i class="fas fa-phone"></i></a>
+          <a href="#" title="LinkedIn" aria-label="LinkedIn profile"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="TopRowbanner.html">Home</a></li>
+          <li><a href="Products.html">All Products</a></li>
+          <li><a href="Requestforquotes.html">Request Quote</a></li>
+          <li><a href="TrackOrder.html">Track Order</a></li>
+          <li><a href="BuyOnCredit.html">Buy on Credit</a></li>
+        </ul>
+      </div>
+
+      <!-- Customer Support -->
+      <div class="footer-section">
+        <h4>Support</h4>
+        <ul class="footer-links">
+          <li><a href="HelpCentre.html">Help Centre</a></li>
+          <li><a href="Dashboard.html">My Account</a></li>
+          <li><a href="Cart.html">Shopping Cart</a></li>
+          <li><a href="grievance.html">Write to Management</a></li>
+          <li><a href="WriteReview.html">Write a Review</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="footer-section">
+        <h4>Contact Us</h4>
+        <ul class="footer-contact-list">
+          <li><i class="fas fa-phone"></i> <a href="tel:+91918275568">+91 918275568</a></li>
+          <li><i class="fas fa-envelope"></i> <a href="mailto:sales@saiscientifics.com">sales@saiscientifics.com</a></li>
+          <li><i class="fab fa-whatsapp"></i> <a href="https://wa.me/9182755368" target="_blank" rel="noopener">WhatsApp Support</a></li>
+        </ul>
+        <div class="footer-trust-badges">
+          <span class="trust-badge-small"><i class="fas fa-shield-alt"></i> Secure</span>
+          <span class="trust-badge-small"><i class="fas fa-certificate"></i> Original</span>
+          <span class="trust-badge-small"><i class="fas fa-truck"></i> Fast Ship</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+      <p>&copy; 2026 Sai Scientifics. All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <span>•</span>
+        <a href="#">Terms of Service</a>
+        <span>•</span>
+        <a href="#">Shipping Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="api.js" defer></script>
+  <script src="TopRowbanner.js" defer></script>
+  
+  <script>
+    // Global utility for showing toasts
+    window.showToast = function(message, type = 'success', duration = 3000) {
+      const toast = document.createElement('div');
+      toast.className = `toast ${type}`;
+      toast.innerHTML = `
+        <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+        <span>${message}</span>
+      `;
+      document.body.appendChild(toast);
+      
+      setTimeout(() => {
+        toast.style.animation = 'slideOutRight 0.3s ease';
+        setTimeout(() => toast.remove(), 300);
+      }, duration);
+    };
+    
+    // Add to cart functionality
+    window.addToCart = function(productName, productPrice) {
+      const message = `${productName} added to cart - ₹${productPrice}`;
+      window.showToast(message, 'success');
+      
+      // Track event for analytics
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'add_to_cart', {
+          'value': productPrice,
+          'currency': 'INR',
+          'items': [{
+            'item_name': productName,
+            'price': productPrice
+          }]
+        });
+      }
+      
+      // Track with Facebook Pixel
+      if (typeof fbq !== 'undefined') {
+        fbq('track', 'AddToCart', {
+          value: productPrice,
+          currency: 'INR'
+        });
+      }
+    };
+    
+    // Scroll reveal animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+    
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fade-in-up');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+    
+    // Observe all cards for animation
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.deal-card, .featured-card, .category-item, .benefit-card').forEach(el => {
+        observer.observe(el);
+      });
+    });
+    
+    // Hide loading overlay once page is fully loaded
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        const overlay = document.getElementById('loadingOverlay');
+        if (overlay) {
+          overlay.classList.add('hidden');
+          setTimeout(function() {
+            overlay.style.display = 'none';
+          }, 300);
+        }
+      }, 500);
+    });
+    
+    // Track page views with custom events
+    document.addEventListener('DOMContentLoaded', function() {
+      // Track view for each category
+      document.querySelectorAll('.category-item').forEach(item => {
+        item.addEventListener('click', function(e) {
+          const categoryName = this.querySelector('span').textContent;
+          if (typeof gtag !== 'undefined') {
+            gtag('event', 'view_item_list', {
+              'items': [{'item_name': categoryName}]
+            });
+          }
+        });
+      });
+      
+      // Track deal clicks
+      document.querySelectorAll('.deal-card').forEach(card => {
+        card.addEventListener('click', function() {
+          const productName = this.querySelector('h3').textContent;
+          if (typeof gtag !== 'undefined') {
+            gtag('event', 'view_item', {
+              'items': [{'item_name': productName}]
+            });
+          }
+        });
+      });
+      
+      // ===== CATEGORIES MODAL FUNCTIONALITY =====
+      // All categories data with stats and features
+      const allCategories = [
+        { name: 'Office Supplies', products: 1240, discount: '15%', trending: true, bestseller: false },
+        { name: 'Material Handling', products: 893, discount: '12%', trending: false, bestseller: true },
+        { name: 'Agriculture', products: 1567, discount: '18%', trending: true, bestseller: true },
+        { name: 'Cleaning', products: 765, discount: '10%', trending: false, bestseller: false },
+        { name: 'Power Tools', products: 2341, discount: '20%', trending: true, bestseller: true },
+        { name: 'Hand Tools', products: 1834, discount: '16%', trending: false, bestseller: true },
+        { name: 'Testing & Measuring', products: 634, discount: '14%', trending: false, bestseller: false },
+        { name: 'Furniture', products: 456, discount: '12%', trending: false, bestseller: false },
+        { name: 'Safety Equipment', products: 2156, discount: '19%', trending: true, bestseller: true },
+        { name: 'Hydraulics & Pneumatics', products: 987, discount: '17%', trending: false, bestseller: false },
+        { name: 'Electrical', products: 1876, discount: '18%', trending: true, bestseller: false },
+        { name: 'IT Security', products: 543, discount: '13%', trending: false, bestseller: false },
+        { name: 'Fasteners & Hardware', products: 3456, discount: '22%', trending: false, bestseller: true },
+        { name: 'Industrial Chemicals', products: 789, discount: '15%', trending: true, bestseller: false },
+        { name: 'Packaging Materials', products: 1234, discount: '14%', trending: false, bestseller: false }
+      ];
+      
+      // Modal elements
+      const modal = document.getElementById('categoriesModal');
+      const overlay = document.getElementById('categoriesOverlay');
+      const closeBtn = document.getElementById('closeCategoriesModal');
+      const seeAllBtn = document.querySelector('.see-all a');
+      const searchInput = document.getElementById('categorySearch');
+      const filterTabs = document.querySelectorAll('.filter-tab');
+      const categoriesGrid = document.getElementById('categoriesGrid');
+      
+      let currentFilter = 'all';
+      
+      // Function to render categories
+      function renderCategories(filter = 'all', searchTerm = '') {
+        categoriesGrid.innerHTML = '';
+        
+        let filtered = allCategories;
+        
+        // Apply filter tabs (trending, bestsellers, all)
+        if (filter === 'trending') {
+          filtered = filtered.filter(cat => cat.trending);
+        } else if (filter === 'bestsellers') {
+          filtered = filtered.filter(cat => cat.bestseller);
+        }
+        
+        // Apply search filter
+        if (searchTerm) {
+          filtered = filtered.filter(cat => 
+            cat.name.toLowerCase().includes(searchTerm.toLowerCase())
+          );
+        }
+        
+        // Render filtered categories
+        filtered.forEach(category => {
+          const card = document.createElement('div');
+          card.className = 'category-card-item' + (category.trending ? ' trending' : '') + (category.bestseller ? ' bestseller' : '');
+          card.innerHTML = `
+            <div class="category-name">${category.name}</div>
+            <div class="category-stats">
+              <div class="stat-item">
+                <i class="fas fa-box"></i>
+                <span>${category.products.toLocaleString()} products</span>
+              </div>
+              <div class="stat-item">
+                <i class="fas fa-percentage"></i>
+                <span>Up to ${category.discount} discount</span>
+              </div>
+            </div>
+            <div class="pricing-tiers">
+              <span class="tier-badge">Qty: 1-10</span>
+              <span class="tier-badge">Qty: 10+</span>
+              <span class="tier-badge">Qty: 100+</span>
+            </div>
+          `;
+          
+          card.addEventListener('click', () => {
+            window.showToast(`Browsing ${category.name}...`);
+            gtag('event', 'view_item_list', {
+              'items': [{'item_name': category.name, 'item_category': 'category'}]
+            });
+            // Navigate to category (you can customize this)
+            setTimeout(() => {
+              // window.location.href = `Products.html?category=${category.name}`;
+            }, 500);
+          });
+          
+          categoriesGrid.appendChild(card);
+        });
+        
+        // Show no results message
+        if (filtered.length === 0) {
+          categoriesGrid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #9ca3af; padding: 40px;">No categories found</p>';
+        }
+      }
+      
+      // Open modal
+      function openModal() {
+        modal.classList.add('active');
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        renderCategories('all', '');
+        searchInput.focus();
+      }
+      
+      // Close modal
+      function closeModal() {
+        modal.classList.remove('active');
+        overlay.classList.remove('active');
+        document.body.style.overflow = 'auto';
+        searchInput.value = '';
+        currentFilter = 'all';
+        filterTabs.forEach(tab => tab.classList.remove('active'));
+        document.querySelector('[data-filter="all"]').classList.add('active');
+      }
+      
+      // Event listeners
+      if (seeAllBtn) {
+        seeAllBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          openModal();
+        });
+      }
+      
+      closeBtn.addEventListener('click', closeModal);
+      overlay.addEventListener('click', closeModal);
+      
+      // Search functionality
+      searchInput.addEventListener('input', (e) => {
+        renderCategories(currentFilter, e.target.value);
+      });
+      
+      // Filter tabs functionality
+      filterTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          filterTabs.forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          currentFilter = tab.dataset.filter;
+          renderCategories(currentFilter, searchInput.value);
+        });
+      });
+      
+      // Close modal on Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+          closeModal();
+        }
+      });
+    });
+  </script>
+  
+  <!-- Categories Modal Popup -->
+  <div class="modal" id="categoriesModal" role="dialog" aria-modal="true" aria-labelledby="categoriesTitle">
+    <div class="modal-content categories-modal">
+      <div class="modal-header">
+        <h2 id="categoriesTitle">All Categories</h2>
+        <button class="modal-close" id="closeCategoriesModal" aria-label="Close categories popup">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      
+      <!-- Feature 1: Category Search & Filter -->
+      <div class="search-filter-section">
+        <div class="search-box">
+          <i class="fas fa-search"></i>
+          <input type="text" id="categorySearch" placeholder="Search categories..." aria-label="Search categories">
+        </div>
+        <div class="filter-tabs">
+          <button class="filter-tab active" data-filter="all">All Categories</button>
+          <button class="filter-tab" data-filter="trending">Trending</button>
+          <button class="filter-tab" data-filter="bestsellers">Best Sellers</button>
+        </div>
+      </div>
+      
+      <!-- Feature 2: Category Grid with Stats & Bulk Pricing -->
+      <div class="categories-grid" id="categoriesGrid">
+        <!-- Generated dynamically -->
+      </div>
+      
+      <div class="modal-footer">
+        <p class="info-text"><i class="fas fa-info-circle"></i> Select a category to browse products or request a bulk quote</p>
+        <a href="Requestforquotes.html" class="primary-btn">Request Bulk Quote</a>
+      </div>
+    </div>
+  </div>
+  
+  <div class="modal-overlay" id="categoriesOverlay" aria-hidden="true"></div>
+
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1" /></noscript>
+</body>
+</html>

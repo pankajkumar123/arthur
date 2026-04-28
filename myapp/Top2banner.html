@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sai Scientifics - Secondary Header</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="Top2banner.css">
+</head>
+<body>
+  <header class="main-header">
+    <!-- Left Section -->
+    <div class="header-left">
+      <button class="categories-btn" id="categoriesBtn" type="button" aria-controls="sidebar" aria-expanded="false">
+        <div class="grid-icon">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <span>All</span>
+      </button>
+      <a href="#" class="logo"><span class="brand-dark">sai</span><span class="brand-orange">scientifics</span></a>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="header-search">
+      <label class="visually-hidden" for="top2Search">Search products</label>
+      <input type="text" id="top2Search" placeholder="Search products...">
+      <button class="search-btn" type="button"><i class="fas fa-search"></i></button>
+    </div>
+
+    <!-- Right Section -->
+    <div class="header-right">
+      <a href="BuyOnCredit.html" class="nav-link">💳 Buy On Credit</a>
+      <a href="HelpCentre.html" class="nav-link">🎧 Help Center</a>
+      <a href="Cart.html" class="cart-icon">
+        🛒
+        <span class="cart-badge" id="cartBadge">7</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Sidebar Modal -->
+  <div class="sidebar" id="sidebar" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="sidebar-content">
+      <button class="sidebar-close" id="sidebarClose" type="button" aria-label="Close">&times;</button>
+      <h3>Categories</h3>
+      <ul class="sidebar-menu">
+        <li><a href="#office">📎 Office Supplies</a></li>
+        <li><a href="#handling">📦 Material Handling</a></li>
+        <li><a href="#garden">🌿 Garden & Landscaping</a></li>
+        <li><a href="#cleaning">🧹 Cleaning</a></li>
+        <li><a href="#tools">🔨 Power Tools</a></li>
+        <li><a href="#handtools">🛠️ Hand Tools</a></li>
+        <li><a href="#testing">🌡️ Testing Instruments</a></li>
+        <li><a href="#furniture">🛋️ Furniture & Hospitality</a></li>
+        <li><a href="#safety">✋ Safety</a></li>
+        <li><a href="#hydraulics">🏗️ Hydraulics & Pneumatics</a></li>
+        <li><a href="#electrical">🔌 Electrical</a></li>
+        <li><a href="#itsecurity">💻 IT Security</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Sidebar Overlay -->
+  <div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
+
+  <script src="Top2banner.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "build",
+			"type": "shell",
+			"command": "C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\MSBuild\\Current\\Bin\\MSBuild.exe",
+			"args": [
+				"build.proj",
+				"/property:GenerateFullPaths=true",
+				"/t:build",
+				"/consoleloggerparameters:NoSummary"
+			],
+			"group": "build"
+		},
+		{
+			"label": "test",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"test"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}\\myapp"
+			},
+			"group": "test"
+		}
+	]
+}

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buy on Credit - Sai Scientifics</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="BuyOnCredit.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="TopRowbanner.html" class="nav-logo">
+        <i class="fas fa-arrow-left"></i> Back to Home
+      </a>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="container">
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-content">
+        <h1>💳 Buy Now, Pay Later</h1>
+        <p>Get instant credit up to ₹10 Lakhs with zero interest for 30 days</p>
+        <button class="apply-btn" id="applyBtn">Apply for Credit</button>
+      </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+      <h2>Why Choose Us?</h2>
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <i class="fas fa-bolt"></i>
+          <h3>Instant Approval</h3>
+          <p>Get approved in minutes with just basic details</p>
+        </div>
+        <div class="benefit-card">
+          <i class="fas fa-percent"></i>
+          <h3>Zero Interest</h3>
+          <p>No interest for first 30 days on all purchases</p>
+        </div>
+        <div class="benefit-card">
+          <i class="fas fa-shield-alt"></i>
+          <h3>100% Secure</h3>
+          <p>Your data is encrypted and completely secure</p>
+        </div>
+        <div class="benefit-card">
+          <i class="fas fa-clock"></i>
+          <h3>Flexible Terms</h3>
+          <p>Repay in 3, 6, or 12 months at low interest</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Application Form Modal -->
+    <div class="modal" id="applicationModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="applicationTitle">
+      <div class="modal-content">
+        <button type="button" class="close-btn" id="closeBtn" aria-label="Close">&times;</button>
+        <h2 id="applicationTitle">Credit Application Form</h2>
+        
+        <form id="creditForm" class="credit-form">
+          <!-- Personal Information -->
+          <fieldset>
+            <legend>Personal Information</legend>
+            
+            <div class="form-group">
+              <label for="fullName">Full Name *</label>
+              <input type="text" id="fullName" name="fullName" required>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required>
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone Number *</label>
+                <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="dob">Date of Birth *</label>
+              <input type="date" id="dob" name="dob" required>
+            </div>
+
+            <div class="form-group">
+              <label for="panNumber">PAN Number *</label>
+              <input type="text" id="panNumber" name="panNumber" placeholder="ABCDE1234F" maxlength="10" required>
+            </div>
+          </fieldset>
+
+          <!-- Address Information -->
+          <fieldset>
+            <legend>Address Information</legend>
+            
+            <div class="form-group">
+              <label for="address">Residential Address *</label>
+              <textarea id="address" name="address" rows="3" required></textarea>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="city">City *</label>
+                <input type="text" id="city" name="city" required>
+              </div>
+              <div class="form-group">
+                <label for="state">State *</label>
+                <input type="text" id="state" name="state" required>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="pincode">Pincode *</label>
+                <input type="text" id="pincode" name="pincode" pattern="[0-9]{6}" required>
+              </div>
+              <div class="form-group">
+                <label for="residenceType">Residence Type *</label>
+                <select id="residenceType" name="residenceType" required>
+                  <option value="">Select Type</option>
+                  <option value="owned">Owned</option>
+                  <option value="rented">Rented</option>
+                  <option value="parental">Parental</option>
+                </select>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- Employment Information -->
+          <fieldset>
+            <legend>Employment Information</legend>
+            
+            <div class="form-group">
+              <label for="employmentType">Employment Type *</label>
+              <select id="employmentType" name="employmentType" required>
+                <option value="">Select Type</option>
+                <option value="salaried">Salaried</option>
+                <option value="self_employed">Self Employed</option>
+                <option value="business">Business Owner</option>
+                <option value="student">Student</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="monthlyIncome">Monthly Income (₹) *</label>
+              <input type="number" id="monthlyIncome" name="monthlyIncome" min="0" required>
+            </div>
+
+            <div class="form-group">
+              <label for="company">Company/Organization Name</label>
+              <input type="text" id="company" name="company">
+            </div>
+          </fieldset>
+
+          <!-- Credit Preference -->
+          <fieldset>
+            <legend>Credit Preference</legend>
+            
+            <div class="form-group">
+              <label for="creditAmount">Required Credit Amount (₹) *</label>
+              <input type="number" id="creditAmount" name="creditAmount" min="0" max="1000000" required>
+            </div>
+
+            <div class="form-group">
+              <label for="repaymentPeriod">Preferred Repayment Period *</label>
+              <select id="repaymentPeriod" name="repaymentPeriod" required>
+                <option value="">Select Period</option>
+                <option value="30">30 Days (0% Interest)</option>
+                <option value="90">3 Months (8% Interest)</option>
+                <option value="180">6 Months (10% Interest)</option>
+                <option value="360">12 Months (12% Interest)</option>
+              </select>
+            </div>
+          </fieldset>
+
+          <!-- Agreement -->
+          <div class="form-group checkbox">
+            <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
+            <label for="agreeTerms">I agree to the Terms & Conditions and Privacy Policy</label>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" class="submit-btn">Submit Application</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Success Message -->
+    <div class="modal" id="successModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="successTitle" aria-describedby="successMessage">
+      <div class="modal-content success-modal">
+        <i class="fas fa-check-circle"></i>
+        <h2 id="successTitle">Application Submitted Successfully!</h2>
+        <p id="successMessage">Your credit application has been submitted. Our team will review it and contact you within 24 hours.</p>
+        <p class="reference-id">Reference ID: <strong id="referenceId"></strong></p>
+        <button class="submit-btn" onclick="location.href='TopRowbanner.html'">Back to Home</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <h3>Questions?</h3>
+      <p>Email: support@saiscientifics.com | Call: +91 918275568</p>
+      <p>&copy; 2026 Sai Scientifics. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="api.js" defer></script>
+  <script src="ui-notify.js" defer></script>
+  <script src="BuyOnCredit.js" defer></script>
+</body>
+</html>

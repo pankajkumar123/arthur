@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Help Centre - Sai Scientifics</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="HelpCentre.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="TopRowbanner.html" class="nav-logo">
+        <i class="fas fa-arrow-left"></i> Back to Home
+      </a>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="container">
+    <!-- Hero Section -->
+    <section class="hero-section shadow-soft">
+      <h1>🎧 Help Centre</h1>
+      <p>Find answers to your questions and get support from our team</p>
+      
+      <!-- Search Bar -->
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search for help...">
+        <button id="searchBtn"><i class="fas fa-search"></i></button>
+      </div>
+    </section>
+
+    <!-- Quick Links -->
+    <section class="quick-links">
+      <div class="link-card" data-category="orders">
+        <i class="fas fa-shopping-bag"></i>
+        <h3>Orders & Delivery</h3>
+      </div>
+      <div class="link-card" data-category="account">
+        <i class="fas fa-user"></i>
+        <h3>Account & Login</h3>
+      </div>
+      <div class="link-card" data-category="payment">
+        <i class="fas fa-credit-card"></i>
+        <h3>Payment & Refunds</h3>
+      </div>
+      <div class="link-card" data-category="returns">
+        <i class="fas fa-undo"></i>
+        <h3>Returns & Warranty</h3>
+      </div>
+    </section>
+
+    <!-- FAQs Section -->
+    <section class="faq-section shadow-soft">
+      <h2>Frequently Asked Questions</h2>
+
+      <!-- Orders & Delivery -->
+      <div class="faq-category" data-category="orders">
+        <h3>Orders & Delivery</h3>
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>How long does delivery take?</span>
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Standard delivery takes 5-7 business days. Express delivery is available for 24-48 hour delivery in select areas. Delivery times may vary based on location and product availability.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>Can I track my order?</span>
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Yes! Once your order ships, you'll receive a tracking number via email. You can track your order in real-time on our website under "My Orders".</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>What if my order is damaged?</span>
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Please report any damage within 24 hours of receipt. Contact our support team with photos of the damaged item, and we'll arrange a replacement or refund immediately.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Account & Login -->
+      <div class="faq-category" data-category="account">
+        <h3>Account & Login</h3>
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>How do I create an account?</span>
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Click on "Sign Up" at the top right of the homepage. Enter your email, create a password, and verify your email address. Your account is ready to use!</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>I forgot my password. What do I do?</span>
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Click "Forgot Password" on the login page, enter your email, and we'll send you a reset link. Check your email (including spam folder) and follow the link to reset your password.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>How do I update my profile?</span>
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Go to "My Account" > "Profile Settings". Here you can update your personal information, address, and contact details.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Payment & Refunds -->
+      <div class="faq-category" data-category="payment">
+        <h3>Payment & Refunds</h3>
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>What payment methods do you accept?</span>
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>We accept Credit Cards, Debit Cards, Net Banking, UPI, Wallets, and our Buy on Credit option. All payments are secured with industry-standard encryption.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>Are my payments secure?</span>
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Yes! We use 256-bit SSL encryption and comply with PCI DSS standards. Your payment information is never stored on our servers.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>What is your refund policy?</span>
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Refunds are processed within 5-7 business days after we receive your returned item. The refund will be credited to your original payment method.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Returns & Warranty -->
+      <div class="faq-category" data-category="returns">
+        <h3>Returns & Warranty</h3>
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>What is the return window?</span>
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>You can return most items within 30 days of delivery. The product should be unused, in original packaging, and in resalable condition.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>Do you offer warranty?</span>
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Yes, we offer manufacturer warranty on most products. The warranty period varies by product. Details are provided with your purchase.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>How do I initiate a return?</span>
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Go to "My Orders", select the item, and click "Return". Follow the instructions to arrange a pickup. We'll provide you with a return label.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Support Section -->
+    <section class="contact-section shadow-soft">
+      <h2>Still Need Help?</h2>
+      <p>Our support team is here to help you 24/7</p>
+
+      <div class="contact-methods">
+        <div class="contact-card">
+          <i class="fas fa-phone"></i>
+          <h3>Call Us</h3>
+          <p>+91 918275568</p>
+          <p class="hours">Monday - Sunday, 9 AM - 10 PM</p>
+        </div>
+
+        <div class="contact-card">
+          <i class="fas fa-envelope"></i>
+          <h3>Email Us</h3>
+          <p>support@saiscientifics.com</p>
+          <p class="hours">Response within 2 hours</p>
+        </div>
+
+        <div class="contact-card">
+          <i class="fas fa-comments"></i>
+          <h3>Live Chat</h3>
+          <button class="chat-btn">Start Chat</button>
+          <p class="hours">Available 24/7</p>
+        </div>
+
+        <div class="contact-card">
+          <i class="fas fa-comment-dots"></i>
+          <h3>Message Us</h3>
+          <button class="message-btn">Send Message</button>
+          <p class="hours">Response within 1 hour</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Message Form Modal -->
+    <div class="modal" id="messageModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="messageTitle">
+      <div class="modal-content">
+        <button type="button" class="close-btn" id="closeBtn" aria-label="Close">&times;</button>
+        <h2 id="messageTitle">Send us a Message</h2>
+        
+        <form id="messageForm" class="message-form">
+          <div class="form-group">
+            <label for="name">Your Name *</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+
+          <div class="form-group">
+            <label for="subject">Subject *</label>
+            <input type="text" id="subject" name="subject" required>
+          </div>
+
+          <div class="form-group">
+            <label for="category">Category *</label>
+            <select id="category" name="category" required>
+              <option value="">Select Category</option>
+              <option value="orders">Orders & Delivery</option>
+              <option value="account">Account & Login</option>
+              <option value="payment">Payment & Refunds</option>
+              <option value="returns">Returns & Warranty</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message *</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+          </div>
+
+          <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Modal Overlay -->
+    <div class="modal-overlay" id="modalOverlay" aria-hidden="true"></div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2026 Sai Scientifics. All rights reserved.</p>
+  </footer>
+
+  <script src="api.js" defer></script>
+  <script src="ui-notify.js" defer></script>
+  <script src="HelpCentre.js" defer></script>
+</body>
+</html>

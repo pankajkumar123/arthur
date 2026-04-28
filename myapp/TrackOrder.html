@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Order - Sai Scientifics</title>
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="TrackOrder.css">
+</head>
+<body>
+    <main class="track-page">
+      <header class="track-hero">
+        <div class="track-hero-content">
+          <p class="pill">Order Tracking</p>
+          <h1>Track your order in real time</h1>
+          <p>Enter your order ID and email or phone to view live delivery status.</p>
+        </div>
+        <div class="track-hero-card">
+          <h2>Check status</h2>
+          <form id="trackForm">
+            <label for="orderId">Order ID</label>
+            <input type="text" id="orderId" name="orderId" placeholder="ORD-12345678-0001" required>
+
+            <label for="contact">Email or Phone</label>
+            <input type="text" id="contact" name="contact" placeholder="you@email.com or 9876543210" required>
+
+            <button type="submit" class="primary-btn">Track Order</button>
+            <p class="helper">Need help? <a href="HelpCentre.html">Contact support</a></p>
+          </form>
+        </div>
+      </header>
+
+      <section class="track-results" id="trackResults" aria-live="polite">
+        <div class="status-card">
+          <div class="status-header">
+            <h3>Order Status</h3>
+            <span class="status-pill" id="statusPill">Awaiting update</span>
+          </div>
+
+          <div class="status-timeline">
+            <div class="status-step active">
+              <span class="step-dot"></span>
+              <div>
+                <h4>Order confirmed</h4>
+                <p id="statusConfirmed">Pending</p>
+              </div>
+            </div>
+            <div class="status-step">
+              <span class="step-dot"></span>
+              <div>
+                <h4>Packed</h4>
+                <p id="statusPacked">Pending</p>
+              </div>
+            </div>
+            <div class="status-step">
+              <span class="step-dot"></span>
+              <div>
+                <h4>Out for delivery</h4>
+                <p id="statusOut">Pending</p>
+              </div>
+            </div>
+            <div class="status-step">
+              <span class="step-dot"></span>
+              <div>
+                <h4>Delivered</h4>
+                <p id="statusDelivered">Pending</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="order-card">
+          <h3>Order details</h3>
+          <div class="order-row">
+            <span>Order ID</span>
+            <strong id="summaryOrderId">-</strong>
+          </div>
+          <div class="order-row">
+            <span>Estimated delivery</span>
+            <strong id="summaryEta">-</strong>
+          </div>
+          <div class="order-row">
+            <span>Shipping address</span>
+            <strong id="summaryAddress">-</strong>
+          </div>
+          <div class="order-row">
+            <span>Courier</span>
+            <strong id="summaryCourier">-</strong>
+          </div>
+          <div class="order-row">
+            <span>Tracking link</span>
+            <strong><a id="summaryLink" href="#">View courier site</a></strong>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <script src="api.js" defer></script>
+    <script src="TrackOrder.js" defer></script>
+</body>
+</html>

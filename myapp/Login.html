@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In - Sai Scientifics</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="auth.css">
+</head>
+<body>
+  <main class="auth-page">
+    <section class="auth-card">
+      <a href="TopRowbanner.html" style="color: var(--brand-muted); text-decoration: none; font-size: 14px; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 8px; transition: color 0.2s;" onmouseover="this.style.color='var(--brand-orange)'" onmouseout="this.style.color='var(--brand-muted)'">
+        <i class="fas fa-arrow-left"></i> Back to Home
+      </a>
+      <div>
+        <p class="pill">Welcome back</p>
+        <h1>Sign in</h1>
+        <p class="muted">Access your orders, quotes, and saved carts.</p>
+      </div>
+
+      <form id="loginForm" class="auth-form">
+        <label>
+          Email
+          <input type="email" name="email" required autocomplete="email" placeholder="your@email.com">
+        </label>
+        <label>
+          Password
+          <div style="position: relative;">
+            <input type="password" name="password" id="loginPassword" required autocomplete="current-password" placeholder="Enter your password" style="padding-right: 45px;">
+            <button type="button" id="toggleLoginPassword" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: var(--brand-muted); font-size: 18px;" aria-label="Toggle password visibility">
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+        </label>
+        <button type="submit" class="primary-btn" id="loginSubmitBtn">
+          <span id="loginBtnText">Sign in</span>
+          <span id="loginBtnSpinner" style="display: none;">Signing in...</span>
+        </button>
+        <p class="form-status" id="loginStatus" role="status"></p>
+      </form>
+
+      <p class="muted">New here? <a href="Signup.html">Create an account</a></p>
+    </section>
+  </main>
+
+  <script src="api.js" defer></script>
+  <script src="Login.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Request for Quotes - Sai Scientifics</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="Requestforquotes.css">
+</head>
+<body>
+  <nav class="navbar animate-fade-in">
+    <a href="TopRowbanner.html" class="nav-link">
+      <i class="fas fa-arrow-left"></i> Back to Home
+    </a>
+  </nav>
+
+  <main class="rfq-page">
+    <header class="rfq-hero">
+      <div class="rfq-hero-content animate-slide-in-left">
+        <p class="pill animate-bounce-in">Bulk Procurement</p>
+        <h1>Need multiple products or a rate contract?</h1>
+        <p>Upload your list or fill out requirements. Our specialists respond within 48 hours.</p>
+        <div class="rfq-stats">
+          <div>
+            <h3>10L+</h3>
+            <span>Products catalog</span>
+          </div>
+          <div>
+            <h3>25</h3>
+            <span>Categories served</span>
+          </div>
+          <div>
+            <h3>48h</h3>
+            <span>Quote turnaround</span>
+          </div>
+        </div>
+      </div>
+      <div class="rfq-hero-card animate-slide-in-right">
+        <h2>How it works</h2>
+        <ul>
+          <li class="animate-fade-in-delay-1"><i class="fas fa-list"></i> Share requirements</li>
+          <li class="animate-fade-in-delay-2"><i class="fas fa-clipboard-check"></i> Receive curated quote</li>
+          <li class="animate-fade-in-delay-3"><i class="fas fa-truck"></i> Order anytime in 7 days</li>
+        </ul>
+      </div>
+    </header>
+
+    <section class="rfq-panel animate-fade-in-up">
+      <div class="rfq-tabs" role="tablist">
+        <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="formPanel" id="formTab">Fill your requirements</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="uploadPanel" id="uploadTab">Upload your list</button>
+      </div>
+
+      <div class="tab-panel active" id="formPanel" role="tabpanel" aria-labelledby="formTab">
+        <form class="quote-form" id="rfqForm">
+          <h3>Requirement details</h3>
+          <div class="table-wrapper">
+            <table id="quoteTable">
+              <thead>
+                <tr>
+                  <th>S.No</th>
+                  <th>Brand</th>
+                  <th>Product description *</th>
+                  <th>Target price</th>
+                  <th>Quantity *</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td><input type="text" name="brand_1" placeholder="Optional"></td>
+                  <td><input type="text" name="description_1" required></td>
+                  <td><input type="text" name="price_1" placeholder="INR"></td>
+                  <td><input type="number" name="qty_1" min="1" required></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <button type="button" class="ghost-btn" id="addRowBtn">Add row</button>
+
+          <h3>Contact details</h3>
+          <div class="details-grid">
+            <label>
+              Name *
+              <input type="text" name="fullName" required>
+            </label>
+            <label>
+              Mobile number *
+              <input type="tel" name="phone" pattern="[0-9]{10}" required>
+            </label>
+            <label>
+              Email *
+              <input type="email" name="email" required>
+            </label>
+            <label>
+              Company name *
+              <input type="text" name="company" required>
+            </label>
+            <label>
+              GST number
+              <input type="text" name="gst">
+            </label>
+            <label>
+              Address
+              <input type="text" name="address">
+            </label>
+            <label>
+              Landmark
+              <input type="text" name="landmark">
+            </label>
+            <label>
+              Pincode *
+              <input type="text" name="pincode" pattern="[0-9]{6}" required>
+            </label>
+            <label>
+              City *
+              <input type="text" name="city" required>
+            </label>
+            <label>
+              State *
+              <input type="text" name="state" required>
+            </label>
+          </div>
+
+          <div class="form-footer">
+            <label class="checkbox-line">
+              <input type="checkbox" name="agentAssist">
+              I am being assisted by an agent
+            </label>
+            <button type="submit" class="primary-btn">Submit request</button>
+          </div>
+
+          <p class="form-status" id="formStatus" role="status"></p>
+        </form>
+      </div>
+
+      <div class="tab-panel" id="uploadPanel" role="tabpanel" aria-labelledby="uploadTab">
+        <div class="upload-card">
+          <h3>Upload your list</h3>
+          <p>Share an XLS, CSV, or PDF. We will validate and send a quote within 48 hours.</p>
+          <label class="upload-box" for="rfqFile">
+            <input type="file" id="rfqFile" accept=".xls,.xlsx,.csv,.pdf" hidden>
+            <span class="upload-icon animate-pulse"><i class="fas fa-cloud-upload-alt"></i></span>
+            <span>Click to upload or drag and drop</span>
+            <small>Max 10MB per file</small>
+          </label>
+          <div class="upload-footer">
+            <input type="text" id="uploadContact" placeholder="Contact email or phone">
+            <button class="primary-btn" id="uploadSubmit" type="button">Submit upload</button>
+          </div>
+          <p class="form-status" id="uploadStatus" role="status"></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div>
+      <strong>Sai Scientifics</strong>
+      <p>Need help? Email sales@saiscientifics.com</p>
+    </div>
+    <span>Response within 48 hours</span>
+  </footer>
+
+  <!-- Scroll to Top Button -->
+  <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <script src="api.js" defer></script>
+  <script src="javascript.js" defer></script>
+  <script>
+    // Scroll to top functionality
+    const scrollBtn = document.getElementById('scrollToTop');
+    
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        scrollBtn.classList.add('visible');
+      } else {
+        scrollBtn.classList.remove('visible');
+      }
+    });
+    
+    scrollBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // Tab animation
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabPanels = document.querySelectorAll('.tab-panel');
+    
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabPanels.forEach(panel => {
+          panel.classList.remove('active');
+          panel.classList.remove('animate-fade-in-up');
+        });
+        
+        const targetId = btn.getAttribute('aria-controls');
+        const targetPanel = document.getElementById(targetId);
+        
+        setTimeout(() => {
+          targetPanel.classList.add('active');
+          targetPanel.classList.add('animate-fade-in-up');
+        }, 50);
+      });
+    });
+  </script>
+</body>
+</html>
