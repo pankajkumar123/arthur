@@ -1,35 +1,42 @@
-const Razorpay = require('razorpay');
 const logger = require('./logger');
 
-// Initialize Razorpay with credentials from environment
-const razorpay = new Razorpay({
-  key_id: process.env.RAZORPAY_KEY_ID,
-  key_secret: process.env.RAZORPAY_KEY_SECRET
-});
+let razorpay = null;
+
+// Safe initialization
+if (process.env.RAZORPAY_KEY_ID && process.env.RAZORPAY_KEY_SECRET) {
+  const Razorpay = require('razorpay');
+
+  razorpay = new Razorpay({
+    key_id: process.env.RAZORPAY_KEY_ID,
+    key_secret: process.env.RAZORPAY_KEY_SECRET
+  });
+
+  logger.info("✅ Razorpay initialized");
+} else {
+  logger.warn("⚠️ Razorpay disabled (missing keys)");
+}
 
 /**
  * Create a Razorpay order
- * @param {Object} options - Order options
- * @param {number} options.amount - Amount in paise
- * @param {string} options.currency - Currency code (e.g., 'INR')
- * @param {string} options.receipt - Unique receipt ID
- * @param {string} options.description - Order description
- * @param {Object} options.notes - Custom notes/metadata
- * @returns {Promise<Object>} Created Razorpay order
  */
 async function createOrder(options) {
   try {
+    // 👉 MOCK MODE
+    if (!razorpay) {
+      return {
+        id: "mock_order_" + Date.now(),
+        amount: options.amount,
+        currency: options.currency || 'INR',
+        status: "created"
+      };
+    }
+
     const order = await razorpay.orders.create({
       amount: options.amount,
       currency: options.currency || 'INR',
       receipt: options.receipt,
       description: options.description,
       notes: options.notes || {}
-    });
-
-    logger.info('Razorpay order created', {
-      razorpayOrderId: order.id,
-      amount: options.amount
     });
 
     return order;
@@ -43,57 +50,40 @@ async function createOrder(options) {
 }
 
 /**
- * Fetch order details from Razorpay
- * @param {string} orderId - Razorpay order ID
- * @returns {Promise<Object>} Order details
+ * Fetch order
  */
 async function fetchOrder(orderId) {
-  try {
-    const order = await razorpay.orders.fetch(orderId);
-    return order;
-  } catch (error) {
-    logger.error('Failed to fetch Razorpay order', {
-      error: error.message,
-      orderId
-    });
-    throw error;
-  }
+  if (!razorpay) return {};
+
+  return razorpay.orders.fetch(orderId);
 }
 
 /**
- * Fetch payment details
- * @param {string} paymentId - Razorpay payment ID
- * @returns {Promise<Object>} Payment details
+ * Fetch payment
  */
 async function fetchPayment(paymentId) {
-  try {
-    const payment = await razorpay.payments.fetch(paymentId);
-    return payment;
-  } catch (error) {
-    logger.error('Failed to fetch Razorpay payment', {
-      error: error.message,
-      paymentId
-    });
-    throw error;
-  }
+  if (!razorpay) return {};
+
+  return razorpay.payments.fetch(paymentId);
 }
 
 /**
  * Capture payment
- * @param {string} paymentId - Razorpay payment ID
- * @param {number} amount - Amount in paise
- * @returns {Promise<Object>} Captured payment
  */
 async function capturePayment(paymentId, amount) {
   try {
-    const payment = await razorpay.payments.capture(paymentId, amount);
-    logger.info('Payment captured', { paymentId, amount });
-    return payment;
+    if (!razorpay) {
+      return {
+        id: paymentId,
+        amount,
+        status: "captured"
+      };
+    }
+
+    return await razorpay.payments.capture(paymentId, amount);
   } catch (error) {
     logger.error('Failed to capture payment', {
-      error: error.message,
-      paymentId,
-      amount
+      error: error.message
     });
     throw error;
   }
@@ -101,86 +91,64 @@ async function capturePayment(paymentId, amount) {
 
 /**
  * Refund payment
- * @param {string} paymentId - Razorpay payment ID
- * @param {number} amount - Amount in paise (optional, full refund if not provided)
- * @param {string} notes - Refund reason/notes
- * @returns {Promise<Object>} Refund details
  */
 async function refundPayment(paymentId, amount, notes) {
   try {
-    const refund = await razorpay.payments.refund(paymentId, {
-      amount: amount,
+    if (!razorpay) {
+      return {
+        id: "mock_refund",
+        paymentId,
+        amount
+      };
+    }
+
+    return await razorpay.payments.refund(paymentId, {
+      amount,
       notes: {
-        reason: notes || 'Customer requested refund'
+        reason: notes || 'Mock refund'
       }
     });
-
-    logger.info('Payment refunded', {
-      paymentId,
-      amount,
-      refundId: refund.id
-    });
-
-    return refund;
   } catch (error) {
     logger.error('Failed to refund payment', {
-      error: error.message,
-      paymentId,
-      amount
+      error: error.message
     });
     throw error;
   }
 }
 
 /**
- * Fetch refund details
- * @param {string} refundId - Razorpay refund ID
- * @returns {Promise<Object>} Refund details
+ * Fetch refund
  */
 async function fetchRefund(refundId) {
-  try {
-    const refund = await razorpay.refunds.fetch(refundId);
-    return refund;
-  } catch (error) {
-    logger.error('Failed to fetch refund', {
-      error: error.message,
-      refundId
-    });
-    throw error;
-  }
+  if (!razorpay) return {};
+
+  return razorpay.refunds.fetch(refundId);
 }
 
 /**
- * Fetch all payments for an order
- * @param {string} orderId - Razorpay order ID
- * @returns {Promise<Array>} Array of payment objects
+ * Fetch order payments
  */
 async function fetchOrderPayments(orderId) {
-  try {
-    const payments = await razorpay.orders.fetchPayments(orderId);
-    return payments.items || [];
-  } catch (error) {
-    logger.error('Failed to fetch order payments', {
-      error: error.message,
-      orderId
-    });
-    throw error;
-  }
+  if (!razorpay) return [];
+
+  const payments = await razorpay.orders.fetchPayments(orderId);
+  return payments.items || [];
 }
 
 /**
- * Create payment link (for QR codes, emails, etc.)
- * @param {Object} options - Link options
- * @param {number} options.amount - Amount in paise
- * @param {string} options.currency - Currency
- * @param {string} options.description - Link description
- * @param {string} options.customer_email - Customer email
- * @param {string} options.customer_phone - Customer phone
- * @returns {Promise<Object>} Payment link details
+ * Create payment link
  */
 async function createPaymentLink(options) {
   try {
-    const link = await razorpay.paymentLink.create({
+    if (!razorpay) {
+      return {
+        id: "mock_link",
+        amount: options.amount,
+        status: "created"
+      };
+    }
+
+    return await razorpay.paymentLink.create({
       amount: options.amount,
       currency: options.currency || 'INR',
       description: options.description,
@@ -194,17 +162,9 @@ async function createPaymentLink(options) {
       },
       notes: options.notes || {}
     });
-
-    logger.info('Payment link created', {
-      linkId: link.id,
-      amount: options.amount
-    });
-
-    return link;
   } catch (error) {
     logger.error('Failed to create payment link', {
-      error: error.message,
-      options
+      error: error.message
     });
     throw error;
   }
