@@ -14,7 +14,7 @@ const API_CONFIG = {
       .replace(/\/+$/, '');
     return cleanUrl.endsWith('/api') ? cleanUrl : `${cleanUrl}/api`;
   })(),
-  timeout: 10000,
+  timeout: 60000,
   retryAttempts: 3,
   retryDelay: 1000
 };
