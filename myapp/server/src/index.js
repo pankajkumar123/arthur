@@ -97,7 +97,7 @@ app.get('/api/health/db', async (req, res) => {
 });
 
 // API routes
-app.use('/api', authRoutes);      // Auth routes (no auth required)
+app.use('/api/auth', authRoutes); // Auth routes (no auth required)
 app.use('/api', catalogRoutes);   // Catalog routes (public/protected)
 app.use('/api', cartRoutes);      // Cart routes (protected)
 app.use('/api', orderRoutes);     // Order routes (protected)

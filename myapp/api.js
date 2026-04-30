@@ -38,7 +38,7 @@ async function apiFetch(path, options = {}) {
 
   if (!response.ok) {
     const payload = await response.json().catch(() => ({}));
-    const message = payload.error || 'Request failed';
+    const message = payload.message || payload.error || 'Request failed';
     
     // Handle token expiration
     if (response.status === 401 && token) {

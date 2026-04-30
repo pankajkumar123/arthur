@@ -2,6 +2,8 @@
 const jwt = require('jsonwebtoken');
 const logger = require('../utils/logger');
 
+const JWT_SECRET = process.env.JWT_SECRET || 'supersecretkey';
+
 // Verify JWT token
 function authenticateToken(req, res, next) {
   const authHeader = req.headers['authorization'];
@@ -13,7 +15,7 @@ function authenticateToken(req, res, next) {
   }
   
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, JWT_SECRET);
     req.user = decoded;
     logger.debug('Token verified', { userId: decoded.id });
     next();
@@ -30,7 +32,7 @@ function optionalAuth(req, res, next) {
   
   if (token) {
     try {
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      const decoded = jwt.verify(token, JWT_SECRET);
       req.user = decoded;
     } catch (error) {
       // Silently fail for optional auth

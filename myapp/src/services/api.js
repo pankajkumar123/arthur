@@ -1,9 +1,19 @@
 import axios from 'axios';
 
 // API Base URL
-// - Dev default: localhost backend
-// - Prod default: same-origin /api (works for Hostinger single-domain setups)
-const API_BASE_URL = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:4000' : '/api');
+// VITE_API_URL may be either the Render root URL or the full /api URL.
+const DEFAULT_API_BASE_URL = import.meta.env.DEV
+  ? 'http://localhost:4000/api'
+  : 'https://arthur-42nc.onrender.com/api';
+
+function normalizeApiBaseUrl(url) {
+  const cleanUrl = (url || DEFAULT_API_BASE_URL)
+    .replace(/^VITE_API_URL=/, '')
+    .replace(/\/+$/, '');
+  return cleanUrl.endsWith('/api') ? cleanUrl : `${cleanUrl}/api`;
+}
+
+const API_BASE_URL = normalizeApiBaseUrl(import.meta.env.VITE_API_URL);
 
 // Create axios instance with default config
 const apiClient = axios.create({
